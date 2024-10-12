@@ -1,0 +1,31 @@
+.wrapper {
+  background-color: rgb(242, 242, 243);
+  .container {
+    width: 1440px;
+    margin: 0 auto;
+    padding-right: 75px;
+    padding-left: 75px;
+    @media (max-width: 1439px) {
+      width: 100%;
+      padding-right: 50px;
+      padding-left: 50px;
+    }
+    @media (max-width: 600px) {
+      padding-right: 25px;
+      padding-left: 25px;
+    }
+    @media (max-width: 400px) {
+      padding-right: 10px;
+      padding-left: 10px;
+    }
+    button {
+      cursor: pointer;
+      &:hover {
+        background-color: rgb(255, 171, 8);
+      }
+    }
+    img {
+      display: block;
+    }
+  }
+}

@@ -1,0 +1,15 @@
+$font_family: "Nunito";
+
+@mixin flex($display, $direction, $just_content, $align_items) {
+  display: $display;
+  flex-direction: $direction;
+  justify-content: $just_content;
+  align-items: $align_items;
+}
+
+@mixin font($size, $weight, $height) {
+  font-family: $font_family;
+  font-size: $size;
+  font-weight: $weight;
+  line-height: $height;
+}

@@ -1,0 +1,101 @@
+@import "../../style/vars.scss";
+
+footer {
+  background-color: white;
+  .container {
+    @include flex(flex, row, space-between, flex-start);
+    flex-wrap: wrap;
+    padding-top: 51px;
+    padding-bottom: 40px;
+    @media (max-width: 1100px) {
+      @include flex(flex, column, space-between, flex-start);
+      gap: 20px;
+    }
+    @media (max-width: 1100px) {
+      padding-top: 20px;
+      padding-bottom: 20px;
+    }
+    .logo {
+      width: 50%;
+      @media (max-width: 1100px) {
+        width: 35%;
+      }
+      img {
+        width: 300px;
+        height: 58px;
+        @media (max-width: 600px) {
+          width: 200px;
+          height: 40px;
+        }
+      }
+    }
+    .contactsContainer {
+      width: 50%;
+      @include flex(flex, row, flex-start, flex-start);
+      margin-bottom: 34px;
+      @media (max-width: 1100px) {
+        width: 100%;
+        margin-bottom: 0;
+      }
+      .contacts {
+        margin-right: 126px;
+        @media (max-width: 1100px) {
+          margin-right: 0;
+          width: 40%;
+        }
+        @media (max-width: 850px) {
+          width: 60%;
+        }
+        > span {
+          @include font(24px, 400, 100%);
+          display: inline-block;
+          margin-bottom: 24px;
+          @media (max-width: 1100px) {
+            @include font(16px, 400, 100%);
+            margin-bottom: 10px;
+          }
+        }
+        > div {
+          @include flex(flex, row, flex-start, center);
+          gap: 4px;
+          span {
+            @include font(16px, 400, 130%);
+            @media (max-width: 1100px) {
+              @include font(14px, 400, 100%);
+            }
+          }
+        }
+      }
+    }
+    .social {
+      span {
+        display: inline-block;
+        margin-bottom: 22px;
+        @include font(24px, 400, 100%);
+        @media (max-width: 1100px) {
+          @include font(16px, 400, 100%);
+          margin-bottom: 10px;
+        }
+      }
+      > div {
+        @include flex(flex, row, flex-start, center);
+        gap: 16px;
+        img {
+          @media (max-width: 450px) {
+            width: 25px;
+          }
+        }
+      }
+    }
+    .designed {
+      width: 100%;
+      span {
+        display: block;
+        @include font(12px, 400, 16px);
+      }
+      :first-child {
+        margin-bottom: 4px;
+      }
+    }
+  }
+}
