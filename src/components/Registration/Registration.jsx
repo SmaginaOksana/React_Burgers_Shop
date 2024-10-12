@@ -1,6 +1,6 @@
 import "./Registration.scss";
 import { useEffect, useState } from "react";
-import { useForm, FormProvider, useFieldArray } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { Navigate } from "react-router-dom";
 
@@ -14,38 +14,13 @@ export default function Registration({ setHidden }) {
   const {
     register,
     handleSubmit,
-    // control,
     reset,
     getValues,
     formState: { errors },
   } = useForm({
     mode: "onBlur",
-    // defaultValues: {
-    //   users: [],
-    // },
   });
 
-  // const { append, remove, fields } = useFieldArray({
-  //   name: "users",
-  //   control: control,
-  // });
-
-  // const onDeleteUser = (userIndex) => {
-  //   remove(userIndex);
-  // };
-
-  // const onAddUser = () => {
-  //   const lastUser = fields.at(-1);
-  //   let newUserId = 1;
-  //   if (lastUser) {
-  //     newUserId = lastUser.id + 1;
-  //   }
-  //   append({
-  //     id: newUserId,
-  //     login: "",
-  //     password: "",
-  //   });
-  // };
   const onSubmit = (data, e) => {
     console.log(data);
     reset();
@@ -62,11 +37,7 @@ export default function Registration({ setHidden }) {
       <div className="registrContainer">
         <h2 className="title">Sign up to order food</h2>
         <form
-          onSubmit={handleSubmit(
-            onSubmit,
-            onError
-            // onAddUser
-          )}
+          onSubmit={handleSubmit(onSubmit, onError)}
           className="registrForm"
         >
           <input
