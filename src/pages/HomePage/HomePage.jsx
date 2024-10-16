@@ -1,16 +1,13 @@
 import "./HomePage.scss";
-import Header from "../../components/Header/Header";
-import Main from "../../components/MainComponents/Main/Main";
-import Footer from "../../components/Footer/Footer";
+import { useEffect } from "react";
 
-function HomePage() {
-  return (
-    <>
-      <Header />;
-      <Main />;
-      <Footer />
-    </>
-  );
+function HomePage({ setHidden }) {
+  useEffect(() => {
+    setHidden(true);
+    return () => {
+      setHidden(false);
+    };
+  });
 }
 
 export default HomePage;

@@ -1,10 +1,10 @@
 import "./AuthPage.scss";
 import Authorization from "../../components/Authorization/Authorization";
 
-function AuthPage({ setHidden }) {
+function AuthPage({ setAuth }) {
   return (
     <>
-      <Authorization setHidden={setHidden} />
+      <Authorization setAuth={setAuth} />
     </>
   );
 }

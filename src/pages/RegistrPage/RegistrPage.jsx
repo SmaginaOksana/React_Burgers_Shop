@@ -1,10 +1,10 @@
 import "./RegistrPage.scss";
 import Registration from "../../components/Registration/Registration";
 
-function RegistrPage({ setHidden }) {
+function RegistrPage() {
   return (
     <>
-      <Registration setHidden={setHidden} />
+      <Registration />
     </>
   );
 }

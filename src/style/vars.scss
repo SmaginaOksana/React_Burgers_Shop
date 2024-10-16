@@ -1,4 +1,4 @@
-$font_family: "Nunito";
+$font_family: "Nunito", Geneva;
 
 @mixin flex($display, $direction, $just_content, $align_items) {
   display: $display;
@@ -12,4 +12,5 @@ $font_family: "Nunito";
   font-size: $size;
   font-weight: $weight;
   line-height: $height;
+  // font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
