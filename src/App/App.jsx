@@ -12,11 +12,11 @@ function App() {
   const [hidden, setHidden] = useState(false);
   const [auth, setAuth] = useState(false);
 
-  useEffect(() => {
-    if (!auth) {
-      navigate("/registr");
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (!auth) {
+  //     navigate("/registr");
+  //   }
+  // }, []);
 
   return (
     <>

@@ -41,7 +41,7 @@ function Main() {
           </div>
           <h2 className="mainTitle">Бургеры</h2>
           <div className="basketContainer">
-            <Basket basket={basket.data} />
+            <Basket basket={basket.data} dataFlag={dataFlag} />
           </div>
           <div className="mealContainer">
             {products.data.map((item, index) => {

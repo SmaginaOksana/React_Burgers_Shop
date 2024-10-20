@@ -4,6 +4,12 @@ import Choice from "../Choice/Choice";
 import delivery from "../../../assets/delivery.png";
 
 function Basket({ basket }) {
+  // const [basket, setBasket] = useState([]);
+
+  // useEffect(() => {
+  //   setBasket([...props.basket]);
+  // }, []);
+
   const calculatePlus = (index) => {
     // const newBasket = [...basket];
     // newBasket[index].count += 1;

@@ -8,8 +8,6 @@ export default class Services {
       return await response.json();
     } catch (error) {
       console.log(error.message);
-    } finally {
-      console.log("done");
     }
   }
   static async getBasketProducts() {
@@ -21,8 +19,6 @@ export default class Services {
       return await response.json();
     } catch (error) {
       console.log(error.message);
-    } finally {
-      console.log("done");
     }
   }
   static async setBasketProduct(data) {
