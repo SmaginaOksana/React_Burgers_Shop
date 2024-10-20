@@ -1,52 +1,32 @@
-import { useEffect, useState } from "react";
 import "./Main.scss";
+import { useEffect, useState } from "react";
 import Basket from "../Basket/Basket";
 import Spinner from "../../Spinner/Spinner";
-import Meal from "../Meal/Meal";
+import Services from "../../../services/services";
+import MealMenu from "../Meal/MealMenu";
+import { buttonsMeal } from "../../../content/content";
 import ButtonsMeal from "../ButtonsMeal/ButtonsMeal";
 
 function Main() {
-  const [flagButtons, setFlagButtons] = useState(false);
-  const [flagBurgers, setFlagBurgers] = useState(false);
-  const [buttons, setButtons] = useState([]);
-  const [burgers, setBurgers] = useState([]);
+  const [products, setProducts] = useState({ data: [], status: false });
+  const [basket, setBasket] = useState({ data: [], status: false });
+  const [dataFlag, setDataFlag] = useState(false);
+  const upload = { dataFlag, setDataFlag };
 
   useEffect(() => {
-    async function getBurgersContent() {
-      try {
-        const response = await fetch("http://localhost:3001/0");
-        if (!response.ok) {
-          throw new Error("Ошибка получения данных");
-        }
-        const data = await response.json();
-        setBurgers(...burgers, [data]);
-        setFlagBurgers(true);
-      } catch (error) {
-        console.log(error.message);
-      } finally {
-        console.log("done");
+    const productsServer = Services.getAllProducts();
+    const basketServer = Services.getBasketProducts();
+    Promise.allSettled([productsServer, basketServer]).then((results) => {
+      if (results[0].status === "fulfilled") {
+        setProducts({ data: results[0].value, status: true });
       }
-    }
-    async function getButtonsContent() {
-      try {
-        const response = await fetch("http://localhost:3001/1");
-        if (!response.ok) {
-          throw new Error("Ошибка получения данных");
-        }
-        const data = await response.json();
-        setButtons(...buttons, [data]);
-        setFlagButtons(true);
-      } catch (error) {
-        console.log(error.message);
-      } finally {
-        console.log("done");
+      if (results[1].status === "fulfilled") {
+        setBasket({ data: results[1].value, status: true });
       }
-    }
-    getBurgersContent();
-    getButtonsContent();
-  }, [flagBurgers, flagButtons]);
+    });
+  }, [dataFlag]);
 
-  if (!flagBurgers || !flagButtons) {
+  if (!products.status || !basket.status) {
     return <Spinner />;
   }
 
@@ -55,17 +35,17 @@ function Main() {
       <main>
         <div className="container">
           <div className="buttonsContainer">
-            {buttons.map((button, index) => {
+            {buttonsMeal.map((button, index) => {
               return <ButtonsMeal button={button} key={index} />;
             })}
           </div>
           <h2 className="mainTitle">Бургеры</h2>
           <div className="basketContainer">
-            <Basket />
+            <Basket basket={basket.data} />
           </div>
           <div className="mealContainer">
-            {burgers.map((item, index) => {
-              return <Meal burger={item} key={index} />;
+            {products.data.map((item, index) => {
+              return <MealMenu item={item} key={index} upload={upload} />;
             })}
           </div>
         </div>

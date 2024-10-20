@@ -1,16 +1,16 @@
 import "./Choice.scss";
 
-function Choice(props) {
-  const { image, nameRu, weight, price, number } = props.basket;
+function Choice({ index, calculateMinus, calculatePlus, basket }) {
+  const { image, name, weight, price, count } = basket;
 
   return (
     <div className="containerFood">
       <div className="image">
-        <img src={image} alt={nameRu} />
+        <img src={image} alt={name} />
       </div>
       <div className="description">
         <div>
-          <span className="name">{nameRu}</span>
+          <span className="name">{name}</span>
         </div>
         <div>
           <span className="weight">{weight}</span>
@@ -22,15 +22,15 @@ function Choice(props) {
       <div className="amount">
         <button
           onClick={() => {
-            props.calculateMinus(props.index);
+            calculateMinus(index);
           }}
         >
           -
         </button>
-        <span className="number">{number}</span>
+        <span className="number">{count}</span>
         <button
           onClick={() => {
-            props.calculatePlus(props.index);
+            calculatePlus(index);
           }}
         >
           +

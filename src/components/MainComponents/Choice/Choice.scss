@@ -25,11 +25,16 @@
     padding: 0;
     border: none;
   }
+  @media (max-width: 400px) {
+    @include flex(flex, column, space-between, center);
+    height: 180px;
+  }
   .image {
     @media (max-width: 500px) {
       width: 100%;
     }
     img {
+      width: 64px;
       display: block;
       @media (max-width: 500px) {
         width: 100%;
