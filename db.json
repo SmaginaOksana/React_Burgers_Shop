@@ -5,7 +5,7 @@
       "name": "Мясная бомба",
       "weight": "520г",
       "price": 689,
-      "count": 0,
+      "count": 1,
       "id": "5ee0"
     },
     {
@@ -13,7 +13,7 @@
       "name": "Супер сырный",
       "weight": "512г",
       "price": 550,
-      "count": 0,
+      "count": 1,
       "id": "1cbc"
     },
     {
@@ -21,7 +21,7 @@
       "name": "Сытный",
       "weight": "580г",
       "price": 639,
-      "count": 0,
+      "count": 1,
       "id": "3a21"
     },
     {
@@ -29,7 +29,7 @@
       "name": "Тяжелый удар",
       "weight": "470г",
       "price": 480,
-      "count": 0,
+      "count": 1,
       "id": "51e0"
     },
     {
@@ -37,7 +37,7 @@
       "name": "Вечная классика",
       "weight": "450г",
       "price": 450,
-      "count": 0,
+      "count": 1,
       "id": "b6e9"
     },
     {
@@ -45,7 +45,7 @@
       "name": "Итальянский",
       "weight": "510г",
       "price": 560,
-      "count": 0,
+      "count": 1,
       "id": "ae1d"
     }
   ],
@@ -56,15 +56,15 @@
       "name": "Супер сырный",
       "weight": "512г",
       "price": 550,
-      "count": 0
+      "count": 1
     },
     {
-      "id": "1cbc",
-      "image": "./burgers/burger_2.png",
-      "name": "Супер сырный",
-      "weight": "512г",
-      "price": 550,
-      "count": 0
+      "id": "5ee0",
+      "image": "./burgers/burger_1.png",
+      "name": "Мясная бомба",
+      "weight": "520г",
+      "price": 689,
+      "count": 1
     },
     {
       "id": "3a21",
@@ -72,7 +72,7 @@
       "name": "Сытный",
       "weight": "580г",
       "price": 639,
-      "count": 0
+      "count": 1
     }
   ]
 }

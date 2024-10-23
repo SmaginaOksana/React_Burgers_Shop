@@ -1,14 +1,8 @@
-import "./MealMenu.scss";
-import Services from "../../../services/services";
+import "./ProductItem.scss";
+import { addItemBasket } from "../../../functions/addItemBasket";
 
-function MealMenu({ item, upload }) {
+function ProductItem({ item, upload, basketProducts }) {
   const { image, name, weight, price } = item;
-
-  function addItemBasket(item) {
-    Services.setBasketProduct(item).then(() => {
-      upload.setDataFlag((prev) => !prev);
-    });
-  }
 
   return (
     <div className="meal">
@@ -27,7 +21,7 @@ function MealMenu({ item, upload }) {
         </div>
         <button
           onClick={() => {
-            addItemBasket(item);
+            addItemBasket(item, upload, basketProducts);
           }}
         >
           Добавить
@@ -37,4 +31,4 @@ function MealMenu({ item, upload }) {
   );
 }
 
-export default MealMenu;
+export default ProductItem;

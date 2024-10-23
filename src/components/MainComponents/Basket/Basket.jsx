@@ -1,79 +1,31 @@
-import { useEffect, useState } from "react";
 import "./Basket.scss";
-import Choice from "../Choice/Choice";
+import BasketItem from "../BasketItem/BasketItem";
 import delivery from "../../../assets/delivery.png";
+import { allProductsCount } from "../../../functions/productsCount";
 
-function Basket({ basket }) {
-  // const [basket, setBasket] = useState([]);
-
-  // useEffect(() => {
-  //   setBasket([...props.basket]);
-  // }, []);
-
-  const calculatePlus = (index) => {
-    // const newBasket = [...basket];
-    // newBasket[index].count += 1;
-    // setBasket(newBasket);
-  };
-
-  const calculateMinus = (index) => {
-    // const newBasket = [...basket];
-    // if (newBasket[index].count === 1) {
-    //   newBasket[index].count = 0;
-    //   const filteredBasket = newBasket.filter((item) => {
-    //     return item.count !== 0;
-    //   });
-    //   setBasket(filteredBasket);
-    // } else {
-    //   newBasket[index].count -= 1;
-    //   setBasket(newBasket);
-    // }
-  };
-
-  const calculateAmount = () => {
-    // const amount = basket.reduce((acc, item) => {
-    //   return (acc += item.count);
-    // }, 0);
-    // return amount;
-  };
-
-  const calculateSum = () => {
-    // const sum = basket.reduce((acc, item) => {
-    //   return (acc += item.count * item.price);
-    // }, 0);
-    // return sum;
-  };
-
+function Basket({ basketProducts, upload }) {
   return (
     <>
       <div className="basket">
         <h2 className="basketTitle">Корзина</h2>
         <div className="amount">
-          <span>{calculateAmount()}</span>
+          <span>{allProductsCount(basketProducts)}</span>
         </div>
       </div>
-      {basket.length === 0 ? (
+      {basketProducts.length === 0 ? (
         <div className="emptyBasket">
           <h2 className="basketTitle">Корзина пуста</h2>
         </div>
       ) : (
-        basket.map((item, index) => {
-          return (
-            <Choice
-              basket={item}
-              key={index}
-              calculateMinus={calculateMinus}
-              calculatePlus={calculatePlus}
-              index={index}
-            />
-          );
+        basketProducts.map((item, index) => {
+          return <BasketItem item={item} key={index} upload={upload} />;
         })
       )}
       <hr />
       <div className="inTotal">
         <h3>Итого</h3>
         <div className="totalPrice">
-          <span>{calculateSum()}</span>
+          <span>{allProductsCount(basketProducts, true)}</span>
           <span>₽</span>
         </div>
       </div>

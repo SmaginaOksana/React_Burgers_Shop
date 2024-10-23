@@ -3,13 +3,16 @@ import { useEffect, useState } from "react";
 import Basket from "../Basket/Basket";
 import Spinner from "../../Spinner/Spinner";
 import Services from "../../../services/services";
-import MealMenu from "../Meal/MealMenu";
 import { buttonsMeal } from "../../../content/content";
 import ButtonsMeal from "../ButtonsMeal/ButtonsMeal";
+import Products from "../Products/Products";
 
 function Main() {
-  const [products, setProducts] = useState({ data: [], status: false });
-  const [basket, setBasket] = useState({ data: [], status: false });
+  const [productsAll, setProductsAll] = useState({ data: [], status: false });
+  const [basketProducts, setBasketProducts] = useState({
+    data: [],
+    status: false,
+  });
   const [dataFlag, setDataFlag] = useState(false);
   const upload = { dataFlag, setDataFlag };
 
@@ -18,15 +21,15 @@ function Main() {
     const basketServer = Services.getBasketProducts();
     Promise.allSettled([productsServer, basketServer]).then((results) => {
       if (results[0].status === "fulfilled") {
-        setProducts({ data: results[0].value, status: true });
+        setProductsAll({ data: results[0].value, status: true });
       }
       if (results[1].status === "fulfilled") {
-        setBasket({ data: results[1].value, status: true });
+        setBasketProducts({ data: results[1].value, status: true });
       }
     });
   }, [dataFlag]);
 
-  if (!products.status || !basket.status) {
+  if (!productsAll.status || !basketProducts.status) {
     return <Spinner />;
   }
 
@@ -41,12 +44,14 @@ function Main() {
           </div>
           <h2 className="mainTitle">Бургеры</h2>
           <div className="basketContainer">
-            <Basket basket={basket.data} dataFlag={dataFlag} />
+            <Basket upload={upload} basketProducts={basketProducts.data} />
           </div>
           <div className="mealContainer">
-            {products.data.map((item, index) => {
-              return <MealMenu item={item} key={index} upload={upload} />;
-            })}
+            <Products
+              productAll={productsAll.data}
+              upload={upload}
+              basketProducts={basketProducts.data}
+            />
           </div>
         </div>
       </main>

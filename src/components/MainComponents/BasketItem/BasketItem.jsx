@@ -1,8 +1,8 @@
-import "./Choice.scss";
+import "./BasketItem.scss";
+import { editProductsCount } from "../../../functions/productsCount";
 
-function Choice({ index, calculateMinus, calculatePlus, basket }) {
-  const { image, name, weight, price, count } = basket;
-
+function BasketItem({ item, upload }) {
+  const { image, name, weight, price, count } = item;
   return (
     <div className="containerFood">
       <div className="image">
@@ -22,7 +22,7 @@ function Choice({ index, calculateMinus, calculatePlus, basket }) {
       <div className="amount">
         <button
           onClick={() => {
-            calculateMinus(index);
+            editProductsCount(false, item, upload);
           }}
         >
           -
@@ -30,7 +30,7 @@ function Choice({ index, calculateMinus, calculatePlus, basket }) {
         <span className="number">{count}</span>
         <button
           onClick={() => {
-            calculatePlus(index);
+            editProductsCount(true, item, upload);
           }}
         >
           +
@@ -40,4 +40,4 @@ function Choice({ index, calculateMinus, calculatePlus, basket }) {
   );
 }
 
-export default Choice;
+export default BasketItem;

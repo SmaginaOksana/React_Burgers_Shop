@@ -35,4 +35,18 @@ export default class Services {
       console.log(e);
     }
   }
+  static async editBasketProduct(data, id) {
+    try {
+      const response = await fetch(`http://localhost:3001/basket/${id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+      return await response.json();
+    } catch (e) {
+      console.log(e);
+    }
+  }
 }
