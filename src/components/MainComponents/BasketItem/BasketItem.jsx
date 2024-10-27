@@ -1,12 +1,13 @@
 import "./BasketItem.scss";
 import { editProductsCount } from "../../../functions/productsCount";
 
-function BasketItem({ item, upload }) {
-  const { image, name, weight, price, count } = item;
+function BasketItem({ item, index, upload }) {
+  const { nameEn, name, weight, price, count } = item;
+
   return (
     <div className="containerFood">
       <div className="image">
-        <img src={image} alt={name} />
+        <img src={`products/${nameEn}/${nameEn}_${index}.png`} alt={name} />
       </div>
       <div className="description">
         <div>

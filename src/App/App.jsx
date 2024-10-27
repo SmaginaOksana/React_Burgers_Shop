@@ -4,13 +4,12 @@ import { Route, Routes } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "../components/Header/Header";
-import Main from "../components/MainComponents/Main/Main";
 import Footer from "../components/Footer/Footer";
 
 function App() {
   const navigate = useNavigate();
-  const [hidden, setHidden] = useState(false);
   const [auth, setAuth] = useState(false);
+  const [hidden, setHidden] = useState(true);
 
   // useEffect(() => {
   //   if (!auth) {
@@ -21,15 +20,16 @@ function App() {
   return (
     <>
       <div className="wrapper">
-        <Header />
-        {hidden && <Main />}
-        <Routes>
-          <Route path="/" element={<HomePage setHidden={setHidden} />} />
-          <Route path="/registr" element={<RegistrPage />} />
-          <Route path="/auth" element={<AuthPage setAuth={setAuth} />} />
-          <Route path="*" element={<ErrorPage />} />
-        </Routes>
-        <Footer />
+        {hidden && <Header />}
+        <main>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/registr" element={<RegistrPage />} />
+            <Route path="/auth" element={<AuthPage setAuth={setAuth} />} />
+            <Route path="*" element={<ErrorPage setHidden={setHidden} />} />
+          </Routes>
+        </main>
+        {hidden && <Footer />}
       </div>
     </>
   );

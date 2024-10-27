@@ -1,13 +1,13 @@
 import Services from "../services/services";
 
 export function allProductsCount(basketProducts, price = false) {
-  let amount = 0;
+  let count = 0;
   let sum = 0;
   basketProducts.forEach((item) => {
-    amount += item.count;
+    count += item.count;
     sum += item.count * item.price;
   });
-  return price ? sum : amount;
+  return price ? sum : count;
 }
 
 export function editProductsCount(flag, item, upload) {
@@ -15,9 +15,15 @@ export function editProductsCount(flag, item, upload) {
   if (flag) {
     newItem = { ...item, count: item.count + 1 };
   } else {
-    newItem = { ...item, count: item.count - 1 };
+    if (item.count === 1) {
+      Services.deleteBasketProduct(item.id).then(() => {
+        upload.setDataFlag((prev) => !prev);
+      });
+    } else {
+      newItem = { ...item, count: item.count - 1 };
+    }
   }
-  Services.editBasketProduct(newItem, item.id).then(() => {
+  Services.editBasketProduct(newItem, newItem.id).then(() => {
     upload.setDataFlag((prev) => !prev);
   });
 }

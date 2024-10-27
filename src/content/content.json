@@ -1,0 +1,50 @@
+{
+  "navigationButtons": [
+    {
+      "image": "navButtons/icon_burger.png",
+      "name": "Бургеры",
+      "name_products": "burgers"
+    },
+    {
+      "image": "navButtons/icon_snacks.png",
+      "name": "Закуски",
+      "name_products": "snacks"
+    },
+    {
+      "image": "navButtons/icon_coffee.png",
+      "name": "Кофе",
+      "name_products": "coffee"
+    },
+    {
+      "image": "navButtons/icon_combo.png",
+      "name": "Комбо",
+      "name_products": "combo"
+    },
+    {
+      "image": "navButtons/icon_cocktails.png",
+      "name": "Коктейли",
+      "name_products": "cocktails"
+    },
+    {
+      "image": "navButtons/icon_pizza.png",
+      "name": "Пицца",
+      "name_products": "pizza"
+    },
+    {
+      "image": "navButtons/icon_fries.png",
+      "name": "Фри",
+      "name_products": "fries"
+    },
+
+    {
+      "image": "navButtons/icon_desserts.png",
+      "name": "Десерты",
+      "name_products": "desserts"
+    },
+    {
+      "image": "navButtons/icon_sauces.png",
+      "name": "Соусы",
+      "name_products": "sauces"
+    }
+  ]
+}

@@ -1,7 +1,7 @@
 {
-  "products": [
+  "burgers": [
     {
-      "image": "./burgers/burger_1.png",
+      "nameEn": "burgers",
       "name": "Мясная бомба",
       "weight": "520г",
       "price": 689,
@@ -9,7 +9,7 @@
       "id": "5ee0"
     },
     {
-      "image": "./burgers/burger_2.png",
+      "nameEn": "burgers",
       "name": "Супер сырный",
       "weight": "512г",
       "price": 550,
@@ -17,7 +17,7 @@
       "id": "1cbc"
     },
     {
-      "image": "./burgers/burger_3.png",
+      "nameEn": "burgers",
       "name": "Сытный",
       "weight": "580г",
       "price": 639,
@@ -25,7 +25,7 @@
       "id": "3a21"
     },
     {
-      "image": "./burgers/burger_4.png",
+      "nameEn": "burgers",
       "name": "Тяжелый удар",
       "weight": "470г",
       "price": 480,
@@ -33,7 +33,7 @@
       "id": "51e0"
     },
     {
-      "image": "./burgers/burger_5.png",
+      "nameEn": "burgers",
       "name": "Вечная классика",
       "weight": "450г",
       "price": 450,
@@ -41,7 +41,7 @@
       "id": "b6e9"
     },
     {
-      "image": "./burgers/burger_6.png",
+      "nameEn": "burgers",
       "name": "Итальянский",
       "weight": "510г",
       "price": 560,
@@ -49,30 +49,406 @@
       "id": "ae1d"
     }
   ],
-  "basket": [
+  "snacks": [
     {
-      "id": "1cbc",
-      "image": "./burgers/burger_2.png",
-      "name": "Супер сырный",
-      "weight": "512г",
-      "price": 550,
-      "count": 1
+      "nameEn": "snacks",
+      "name": "Куриные крылья",
+      "weight": "420г",
+      "price": 389,
+      "count": 1,
+      "id": "868b"
     },
     {
+      "nameEn": "snacks",
+      "name": "Додстер",
+      "weight": "312г",
+      "price": 350,
+      "count": 1,
+      "id": "873d"
+    },
+    {
+      "nameEn": "snacks",
+      "name": "Паста Карбонара",
+      "weight": "500г",
+      "price": 469,
+      "count": 1,
+      "id": "7b0d"
+    },
+    {
+      "nameEn": "snacks",
+      "name": "Куриные наггетсы",
+      "weight": "370г",
+      "price": 380,
+      "count": 1,
+      "id": "9446"
+    },
+    {
+      "nameEn": "snacks",
+      "name": "Грибной стартер",
+      "weight": "250г",
+      "price": 259,
+      "count": 1,
+      "id": "3fdf"
+    },
+    {
+      "nameEn": "snacks",
+      "name": "Салат Цезарь",
+      "weight": "310г",
+      "price": 520,
+      "count": 1,
+      "id": "37a8"
+    }
+  ],
+  "coffee": [
+    {
+      "nameEn": "coffee",
+      "name": "Американо",
+      "weight": "300мл",
+      "price": 219,
+      "count": 1,
+      "id": "b52e"
+    },
+    {
+      "nameEn": "coffee",
+      "name": "Капучино",
+      "weight": "300мл",
+      "price": 219,
+      "count": 1,
+      "id": "4d03"
+    },
+    {
+      "nameEn": "coffee",
+      "name": "Латте",
+      "weight": "300мл",
+      "price": 219,
+      "count": 1,
+      "id": "8df7"
+    },
+    {
+      "nameEn": "coffee",
+      "name": "Карамельный капучино",
+      "weight": "300мл",
+      "price": 219,
+      "count": 1,
+      "id": "9637"
+    },
+    {
+      "nameEn": "coffee",
+      "name": "Ореховый латте",
+      "weight": "300мл",
+      "price": 219,
+      "count": 1,
+      "id": "2e2b"
+    },
+    {
+      "nameEn": "coffee",
+      "name": "Кокосовый латте",
+      "weight": "300мл",
+      "price": 219,
+      "count": 1,
+      "id": "5850"
+    }
+  ],
+  "combo": [
+    {
+      "nameEn": "combo",
+      "name": "2 пиццы и напиток",
+      "weight": "1100г",
+      "price": 689,
+      "count": 1,
+      "id": "f261"
+    },
+    {
+      "nameEn": "combo",
+      "name": "Пицца и 2 закуски",
+      "weight": "812г",
+      "price": 590,
+      "count": 1,
+      "id": "c700"
+    },
+    {
+      "nameEn": "combo",
+      "name": "4 закуски",
+      "weight": "580г",
+      "price": 639,
+      "count": 1,
+      "id": "afd1"
+    },
+    {
+      "nameEn": "combo",
+      "name": "3 пиццы 25 см",
+      "weight": "1250г",
+      "price": 710,
+      "count": 1,
+      "id": "eb50"
+    },
+    {
+      "nameEn": "combo",
+      "name": "3 пиццы",
+      "weight": "1050г",
+      "price": 640,
+      "count": 1,
+      "id": "eb5b"
+    },
+    {
+      "nameEn": "combo",
+      "name": "5 пицц",
+      "weight": "1510г",
+      "price": 1100,
+      "count": 1,
+      "id": "4baa"
+    }
+  ],
+  "cocktails": [
+    {
+      "nameEn": "cocktails",
+      "name": "Молочный коктейль",
+      "weight": "300мл",
+      "price": 210,
+      "count": 1,
+      "id": "3859"
+    },
+    {
+      "nameEn": "cocktails",
+      "name": "Коктейль Ежевика-малина",
+      "weight": "300мл",
+      "price": 210,
+      "count": 1,
+      "id": "da30"
+    },
+    {
+      "nameEn": "cocktails",
+      "name": "Коктейль Пина Колада",
+      "weight": "300мл",
+      "price": 210,
+      "count": 1,
+      "id": "683b"
+    },
+    {
+      "nameEn": "cocktails",
+      "name": "Айс Капучино",
+      "weight": "300мл",
+      "price": 210,
+      "count": 1,
+      "id": "09f7"
+    },
+    {
+      "nameEn": "cocktails",
+      "name": "Клубничный коктейль",
+      "weight": "300мл",
+      "price": 210,
+      "count": 1,
+      "id": "4b3b"
+    },
+    {
+      "nameEn": "cocktails",
+      "name": "Шоколадный коктейль",
+      "weight": "300мл",
+      "price": 210,
+      "count": 1,
+      "id": "5a57"
+    }
+  ],
+  "pizza": [
+    {
+      "nameEn": "pizza",
+      "name": "Баварская",
+      "weight": "640г",
+      "price": 499,
+      "count": 1,
+      "id": "b86c"
+    },
+    {
+      "nameEn": "pizza",
+      "name": "Мясная с аджикой",
+      "weight": "510г",
+      "price": 459,
+      "count": 1,
+      "id": "7aa2"
+    },
+    {
+      "nameEn": "pizza",
+      "name": "Охотничья",
+      "weight": "580г",
+      "price": 519,
+      "count": 1,
+      "id": "c5a1"
+    },
+    {
+      "nameEn": "pizza",
+      "name": "Сырная",
+      "weight": "570г",
+      "price": 480,
+      "count": 1,
+      "id": "869f"
+    },
+    {
+      "nameEn": "pizza",
+      "name": "Ветчина и огурчики",
+      "weight": "450г",
+      "price": 450,
+      "count": 1,
+      "id": "3793"
+    },
+    {
+      "nameEn": "pizza",
+      "name": "Итальянский цыпленок",
+      "weight": "500г",
+      "price": 520,
+      "count": 1,
+      "id": "9275"
+    }
+  ],
+  "fries": [
+    {
+      "nameEn": "fries",
+      "name": "Картофель из печи",
+      "weight": "320г",
+      "price": 289,
+      "count": 1,
+      "id": "f93d"
+    },
+    {
+      "nameEn": "fries",
+      "name": "Баварский ланчбокс",
+      "weight": "412г",
+      "price": 350,
+      "count": 1,
+      "id": "918b"
+    },
+    {
+      "nameEn": "fries",
+      "name": "Ланчбокс с куриными кусочками",
+      "weight": "480г",
+      "price": 479,
+      "count": 1,
+      "id": "ac72"
+    }
+  ],
+  "desserts": [
+    {
+      "nameEn": "desserts",
+      "name": "Чизкейк Нью-Йорк",
+      "weight": "120г",
+      "price": 299,
+      "count": 1,
+      "id": "4ee5"
+    },
+    {
+      "nameEn": "desserts",
+      "name": "Фондан",
+      "weight": "188г",
+      "price": 250,
+      "count": 1,
+      "id": "2f4b"
+    },
+    {
+      "nameEn": "desserts",
+      "name": "Красный бархат",
+      "weight": "180г",
+      "price": 210,
+      "count": 1,
+      "id": "f45e"
+    },
+    {
+      "nameEn": "desserts",
+      "name": "Сырники",
+      "weight": "270г",
+      "price": 280,
+      "count": 1,
+      "id": "8af6"
+    },
+    {
+      "nameEn": "desserts",
+      "name": "Сорбет",
+      "weight": "150г",
+      "price": 240,
+      "count": 1,
+      "id": "1ff8"
+    },
+    {
+      "nameEn": "desserts",
+      "name": "Слоеные палочки",
+      "weight": "310г",
+      "price": 260,
+      "count": 1,
+      "id": "7e8e"
+    }
+  ],
+  "sauces": [
+    {
+      "nameEn": "sauces",
+      "name": "Горчичный",
+      "weight": "25г",
+      "price": 49,
+      "count": 1,
+      "id": "b218"
+    },
+    {
+      "nameEn": "sauces",
+      "name": "Сладкий чили",
+      "weight": "25г",
+      "price": 49,
+      "count": 1,
+      "id": "1566"
+    },
+    {
+      "nameEn": "sauces",
+      "name": "Чесночный",
+      "weight": "25г",
+      "price": 49,
+      "count": 1,
+      "id": "1c0f"
+    },
+    {
+      "nameEn": "sauces",
+      "name": "Сырный",
+      "weight": "25г",
+      "price": 49,
+      "count": 1,
+      "id": "cb05"
+    },
+    {
+      "nameEn": "sauces",
+      "name": "Кисло-сладкий",
+      "weight": "25г",
+      "price": 49,
+      "count": 1,
+      "id": "69dc"
+    },
+    {
+      "nameEn": "sauces",
+      "name": "Пармеджано",
+      "weight": "25г",
+      "price": 49,
+      "count": 1,
+      "id": "6204"
+    }
+  ],
+  "basket": [
+    {
       "id": "5ee0",
-      "image": "./burgers/burger_1.png",
+      "nameEn": "burgers",
       "name": "Мясная бомба",
       "weight": "520г",
       "price": 689,
       "count": 1
     },
     {
-      "id": "3a21",
-      "image": "./burgers/burger_3.png",
-      "name": "Сытный",
-      "weight": "580г",
-      "price": 639,
-      "count": 1
+      "id": "4d03",
+      "nameEn": "coffee",
+      "name": "Капучино",
+      "weight": "300мл",
+      "price": 219,
+      "count": 2
+    },
+    {
+      "id": "f45e",
+      "nameEn": "desserts",
+      "name": "Красный бархат",
+      "weight": "180г",
+      "price": 210,
+      "count": 3
     }
   ]
 }

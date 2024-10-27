@@ -1,0 +1,76 @@
+@import "../../style/vars.scss";
+
+.authContainer {
+  background-color: white;
+  @include flex(flex, column, space-between, center);
+  width: 600px;
+  margin: auto;
+  padding: 24px;
+  border-radius: 18px;
+  @media (max-width: 700px) {
+    width: 85%;
+  }
+  @media (max-width: 500px) {
+    padding: 20px 10px;
+  }
+  .title {
+    @include font(24px, 600, 100%);
+    margin-bottom: 12px;
+    text-align: center;
+    @media (max-width: 1100px) {
+      width: 100%;
+      @include font(20px, 600, 100%);
+    }
+  }
+  .authForm {
+    width: 90%;
+    @include flex(flex, column, space-between, center);
+    gap: 10px;
+    p {
+      @include font(16px, 400, 100%);
+      font-style: italic;
+      color: red;
+      margin-bottom: 15px;
+    }
+    input {
+      padding: 8px;
+      width: 100%;
+      border: grey 0.5px solid;
+      &::placeholder {
+        @include font(16px, 400, 100%);
+      }
+      &:focus {
+        outline: none;
+        &::placeholder {
+          opacity: 0;
+        }
+      }
+    }
+    input[type="submit"] {
+      padding: 12px 71px;
+      color: white;
+      @include font(20px, 700, 100%);
+      border-radius: 12px;
+      background-color: rgb(255, 112, 32);
+      border: none;
+      margin-bottom: 12px;
+    }
+  }
+  .signUp {
+    width: 90%;
+    padding: 12px 0;
+    a {
+      @include flex(flex, row, center, center);
+      margin: auto;
+      color: rgb(255, 112, 32);
+      text-decoration: none;
+      @include font(20px, 700, 100%);
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+    margin-bottom: 12px;
+    border-radius: 12px;
+    border: 1px solid rgb(255, 112, 32);
+  }
+}

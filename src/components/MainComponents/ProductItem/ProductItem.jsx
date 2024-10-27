@@ -1,13 +1,16 @@
 import "./ProductItem.scss";
 import { addItemBasket } from "../../../functions/addItemBasket";
 
-function ProductItem({ item, upload, basketProducts }) {
-  const { image, name, weight, price } = item;
+function ProductItem({ item, upload, basketProducts, index, activeTab }) {
+  const { name, weight, price } = item;
 
   return (
     <div className="meal">
       <div className="image">
-        <img src={image} alt={name} />
+        <img
+          src={`products/${activeTab.name_products}/${activeTab.name_products}_${index}.png`}
+          alt={name}
+        />
       </div>
       <div className="description">
         <div>

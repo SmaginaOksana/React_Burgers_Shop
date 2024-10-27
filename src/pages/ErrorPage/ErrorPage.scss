@@ -1,5 +1,6 @@
 @import "../../style/vars.scss";
 .wrapperError {
+  margin: auto;
   height: 100vh;
   @include flex(flex, column, center, center);
 }

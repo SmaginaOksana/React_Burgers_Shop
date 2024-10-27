@@ -1,7 +1,7 @@
 export default class Services {
-  static async getAllProducts() {
+  static async getAllProducts(name_products) {
     try {
-      const response = await fetch("http://localhost:3001/products");
+      const response = await fetch(`http://localhost:3001/${name_products}`);
       if (!response.ok) {
         throw new Error("Ошибка получения данных");
       }
@@ -43,6 +43,19 @@ export default class Services {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(data),
+      });
+      return await response.json();
+    } catch (e) {
+      console.log(e);
+    }
+  }
+  static async deleteBasketProduct(id) {
+    try {
+      const response = await fetch(`http://localhost:3001/basket/${id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
       });
       return await response.json();
     } catch (e) {

@@ -1,0 +1,33 @@
+@import "../../../style/vars.scss";
+
+.buttonsContainer {
+  button {
+    @include flex(flex, row, space-between, center);
+    padding: 8px 14px;
+    gap: 8px;
+    border-radius: 50px;
+    border: white 2px solid;
+    background-color: white;
+    span {
+      @include font(16px, 400, 22px);
+      @media (max-width: 950px) {
+        @include font(14px, 400, 100%);
+      }
+      @media (max-width: 500px) {
+        @include font(12px, 400, 100%);
+      }
+    }
+    img {
+      @media (max-width: 500px) {
+        width: 20px;
+      }
+    }
+    @media (max-width: 1350px) {
+      width: 30%;
+      @include flex(flex, row, center, center);
+    }
+  }
+  .activeTab {
+    background-color: rgb(255, 171, 8);
+  }
+}

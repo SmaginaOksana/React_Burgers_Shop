@@ -1,6 +1,10 @@
+@import "../style/vars.scss";
+
 .wrapper {
   background-color: rgb(242, 242, 243);
-
+  main {
+    background-color: rgb(242, 242, 243);
+  }
   .container {
     width: 1440px;
     margin: 0 auto;
@@ -27,6 +31,16 @@
     }
     img {
       display: block;
+    }
+    .wrapperForm {
+      padding-top: 100px;
+      margin: auto;
+      margin-bottom: 100px;
+      @include flex(flex, column, space-between, center);
+      @media (max-width: 500px) {
+        padding-top: 50px;
+        margin-bottom: 50px;
+      }
     }
   }
 }

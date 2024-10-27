@@ -11,11 +11,14 @@ export function addItemBasket(item, upload, basketProducts) {
     });
     return;
   }
-  const newItem = {
-    ...findItemInBasket,
-    count: findItemInBasket.count + 1,
-  };
-  Services.editBasketProduct(newItem, newItem.id).then(() => {
+  // const newItem = {
+  //   ...findItemInBasket,
+  //   count: findItemInBasket.count + 1,
+  // };
+
+  findItemInBasket.count += 1;
+  // Services.editBasketProduct(newItem, newItem.id).then(() => {
+  Services.editBasketProduct(findItemInBasket, findItemInBasket.id).then(() => {
     upload.setDataFlag((prev) => !prev);
     return;
   });

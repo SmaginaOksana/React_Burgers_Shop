@@ -4,10 +4,16 @@ import "./ErrorPage.scss";
 function ErrorPage({ setHidden }) {
   useEffect(() => {
     setHidden(false);
+    return () => {
+      setHidden(true);
+    };
   }, []);
+
   return (
-    <div className="wrapperError">
-      <h1>Error</h1>
+    <div className="container">
+      <div className="wrapperError">
+        <h1>Error</h1>
+      </div>
     </div>
   );
 }

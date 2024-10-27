@@ -1,9 +1,19 @@
 import "./Basket.scss";
+import { useEffect, useState } from "react";
 import BasketItem from "../BasketItem/BasketItem";
 import delivery from "../../../assets/delivery.png";
 import { allProductsCount } from "../../../functions/productsCount";
 
-function Basket({ basketProducts, upload }) {
+function Basket({ basketProducts, upload, activeTab }) {
+  const [freeDelivery, setFreeDelivery] = useState({});
+
+  useEffect(() => {
+    setFreeDelivery({
+      count: allProductsCount(basketProducts),
+      price: allProductsCount(basketProducts, true),
+    });
+  }, [upload]);
+
   return (
     <>
       <div className="basket">
@@ -18,7 +28,15 @@ function Basket({ basketProducts, upload }) {
         </div>
       ) : (
         basketProducts.map((item, index) => {
-          return <BasketItem item={item} key={index} upload={upload} />;
+          return (
+            <BasketItem
+              item={item}
+              key={index}
+              index={index}
+              upload={upload}
+              activeTab={activeTab}
+            />
+          );
         })
       )}
       <hr />
@@ -34,7 +52,14 @@ function Basket({ basketProducts, upload }) {
         <div>
           <img src={delivery} alt="delivery" />
         </div>
-        <span>Бесплатная доставка</span>
+        {freeDelivery.count >= 3 || freeDelivery.price >= 1500 ? (
+          <span>Бесплатная доставка</span>
+        ) : (
+          <span>
+            Бесплатная доставка при заказе от 3-х товаров или на сумму свыше
+            1000 руб.
+          </span>
+        )}
       </div>
     </>
   );
