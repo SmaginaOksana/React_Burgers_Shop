@@ -1,24 +1,23 @@
-import Services from "../services/services";
+import { updateBasket, updateBasketProduct } from "../services/FB_server";
 
-export function addItemBasket(item, upload, basketProducts) {
-  const findItemInBasket = basketProducts.find((elem) => {
-    return elem.id === item.id;
+export function addItemBasket(item, upload, basketProducts, urlImg) {
+  const newItemProduct = { ...item, urlImg };
+  let activeIndex;
+  const findItemInBasket = basketProducts.find((elem, index) => {
+    activeIndex = index;
+    return elem.id === newItemProduct.id;
   });
-
   if (!findItemInBasket) {
-    Services.setBasketProduct(item).then(() => {
+    updateBasket(newItemProduct).then(() => {
       upload.setDataFlag((prev) => !prev);
     });
     return;
   }
-  // const newItem = {
-  //   ...findItemInBasket,
-  //   count: findItemInBasket.count + 1,
-  // };
-
-  findItemInBasket.count += 1;
-  // Services.editBasketProduct(newItem, newItem.id).then(() => {
-  Services.editBasketProduct(findItemInBasket, findItemInBasket.id).then(() => {
+  const newItem = {
+    ...findItemInBasket,
+    count: findItemInBasket.count + 1,
+  };
+  updateBasketProduct(newItem, upload.dataKeys[activeIndex]).then(() => {
     upload.setDataFlag((prev) => !prev);
     return;
   });

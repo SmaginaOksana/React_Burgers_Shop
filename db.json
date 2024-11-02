@@ -427,28 +427,12 @@
   ],
   "basket": [
     {
-      "id": "5ee0",
+      "id": "51e0",
       "nameEn": "burgers",
-      "name": "Мясная бомба",
-      "weight": "520г",
-      "price": 689,
-      "count": 1
-    },
-    {
-      "id": "4d03",
-      "nameEn": "coffee",
-      "name": "Капучино",
-      "weight": "300мл",
-      "price": 219,
+      "name": "Тяжелый удар",
+      "weight": "470г",
+      "price": 480,
       "count": 2
-    },
-    {
-      "id": "f45e",
-      "nameEn": "desserts",
-      "name": "Красный бархат",
-      "weight": "180г",
-      "price": 210,
-      "count": 3
     }
   ]
 }

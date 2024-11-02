@@ -1,4 +1,7 @@
-import Services from "../services/services";
+import {
+  updateBasketProduct,
+  removeBasketProduct,
+} from "../services/FB_server";
 
 export function allProductsCount(basketProducts, price = false) {
   let count = 0;
@@ -10,20 +13,20 @@ export function allProductsCount(basketProducts, price = false) {
   return price ? sum : count;
 }
 
-export function editProductsCount(flag, item, upload) {
+export function editProductsCount(flag, item, upload, activeIndex) {
   let newItem;
   if (flag) {
     newItem = { ...item, count: item.count + 1 };
   } else {
-    if (item.count === 1) {
-      Services.deleteBasketProduct(item.id).then(() => {
+    newItem = { ...item, count: item.count - 1 };
+    if (newItem.count < 1) {
+      removeBasketProduct(upload.dataKeys[activeIndex]).then(() => {
         upload.setDataFlag((prev) => !prev);
       });
-    } else {
-      newItem = { ...item, count: item.count - 1 };
+      return null;
     }
   }
-  Services.editBasketProduct(newItem, newItem.id).then(() => {
+  updateBasketProduct(newItem, upload.dataKeys[activeIndex]).then(() => {
     upload.setDataFlag((prev) => !prev);
   });
 }

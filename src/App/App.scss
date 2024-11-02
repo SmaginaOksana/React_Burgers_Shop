@@ -6,6 +6,8 @@
     background-color: rgb(242, 242, 243);
   }
   .container {
+    flex-wrap: wrap;
+    @include flex(flex, row, space-between, flex-start);
     width: 1440px;
     margin: 0 auto;
     padding-right: 75px;

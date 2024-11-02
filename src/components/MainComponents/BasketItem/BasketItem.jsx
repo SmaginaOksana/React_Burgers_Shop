@@ -1,13 +1,13 @@
 import "./BasketItem.scss";
 import { editProductsCount } from "../../../functions/productsCount";
 
-function BasketItem({ item, index, upload }) {
-  const { nameEn, name, weight, price, count } = item;
+function BasketItem({ item, upload, activeIndex }) {
+  const { name, weight, price, count, urlImg } = item;
 
   return (
     <div className="containerFood">
       <div className="image">
-        <img src={`products/${nameEn}/${nameEn}_${index}.png`} alt={name} />
+        <img src={urlImg} alt={name} />
       </div>
       <div className="description">
         <div>
@@ -23,7 +23,7 @@ function BasketItem({ item, index, upload }) {
       <div className="amount">
         <button
           onClick={() => {
-            editProductsCount(false, item, upload);
+            editProductsCount(false, item, upload, activeIndex);
           }}
         >
           -
@@ -31,7 +31,7 @@ function BasketItem({ item, index, upload }) {
         <span className="number">{count}</span>
         <button
           onClick={() => {
-            editProductsCount(true, item, upload);
+            editProductsCount(true, item, upload, activeIndex);
           }}
         >
           +

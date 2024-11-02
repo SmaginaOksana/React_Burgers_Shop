@@ -3,14 +3,12 @@ import { addItemBasket } from "../../../functions/addItemBasket";
 
 function ProductItem({ item, upload, basketProducts, index, activeTab }) {
   const { name, weight, price } = item;
+  const urlImg = `products/${activeTab.name_products}/${activeTab.name_products}_${index}.png`;
 
   return (
     <div className="meal">
       <div className="image">
-        <img
-          src={`products/${activeTab.name_products}/${activeTab.name_products}_${index}.png`}
-          alt={name}
-        />
+        <img src={urlImg} alt={name} />
       </div>
       <div className="description">
         <div>
@@ -24,7 +22,7 @@ function ProductItem({ item, upload, basketProducts, index, activeTab }) {
         </div>
         <button
           onClick={() => {
-            addItemBasket(item, upload, basketProducts);
+            addItemBasket(item, upload, basketProducts, urlImg);
           }}
         >
           Добавить

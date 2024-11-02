@@ -3,8 +3,6 @@
 footer {
   background-color: white;
   .container {
-    @include flex(flex, row, space-between, flex-start);
-    flex-wrap: wrap;
     padding-top: 51px;
     padding-bottom: 40px;
     @media (max-width: 1100px) {

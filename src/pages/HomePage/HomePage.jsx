@@ -2,10 +2,10 @@ import "./HomePage.scss";
 import { useEffect, useState } from "react";
 import Basket from "../../components/MainComponents/Basket/Basket";
 import Spinner from "../../components/Spinner/Spinner";
-import Services from "../../services/services";
 import { navigationButtons } from "../../content/content.json";
 import Navigation from "../../components/MainComponents/Navigation/Navigation";
 import Products from "../../components/MainComponents/Products/Products";
+import { getData } from "../../services/FB_server";
 
 function HomePage() {
   const [activeTab, setActiveTab] = useState({
@@ -19,17 +19,22 @@ function HomePage() {
     status: false,
   });
   const [dataFlag, setDataFlag] = useState(false);
-  const upload = { dataFlag, setDataFlag };
+  const upload = { dataFlag, setDataFlag, dataKeys: basketProducts.dataKeys };
 
   useEffect(() => {
-    const productsServer = Services.getAllProducts(activeTab.name_products);
-    const basketServer = Services.getBasketProducts();
+    const productsServer = getData(activeTab.name_products);
+    const basketServer = getData("basket");
+
     Promise.allSettled([productsServer, basketServer]).then((results) => {
       if (results[0].status === "fulfilled") {
-        setProductsAll({ data: results[0].value, status: true });
+        setProductsAll({ data: results[0].value || [], status: true });
       }
       if (results[1].status === "fulfilled") {
-        setBasketProducts({ data: results[1].value, status: true });
+        setBasketProducts({
+          data: results[1].value ? Object.values(results[1].value) : [],
+          dataKeys: results[1].value ? Object.keys(results[1].value) : [],
+          status: true,
+        });
       }
     });
   }, [dataFlag, activeTab]);
@@ -55,17 +60,13 @@ function HomePage() {
         </div>
         <h2 className="mainTitle">{activeTab.name}</h2>
         <div className="basketContainer">
-          <Basket
-            upload={upload}
-            basketProducts={basketProducts.data}
-            activeTab={activeTab}
-          />
+          <Basket upload={upload} basketProducts={basketProducts.data} />
         </div>
         <div className="mealContainer">
           <Products
-            productAll={productsAll.data}
             upload={upload}
             basketProducts={basketProducts.data}
+            productAll={productsAll.data}
             activeTab={activeTab}
           />
         </div>

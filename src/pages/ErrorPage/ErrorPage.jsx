@@ -10,11 +10,13 @@ function ErrorPage({ setHidden }) {
   }, []);
 
   return (
-    <div className="container">
-      <div className="wrapperError">
-        <h1>Error</h1>
+    <>
+      <div className="container">
+        <div className="wrapperError">
+          <h1>Error</h1>
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 

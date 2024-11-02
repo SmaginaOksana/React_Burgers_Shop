@@ -4,7 +4,7 @@ import BasketItem from "../BasketItem/BasketItem";
 import delivery from "../../../assets/delivery.png";
 import { allProductsCount } from "../../../functions/productsCount";
 
-function Basket({ basketProducts, upload, activeTab }) {
+function Basket({ basketProducts, upload }) {
   const [freeDelivery, setFreeDelivery] = useState({});
 
   useEffect(() => {
@@ -32,9 +32,8 @@ function Basket({ basketProducts, upload, activeTab }) {
             <BasketItem
               item={item}
               key={index}
-              index={index}
+              activeIndex={index}
               upload={upload}
-              activeTab={activeTab}
             />
           );
         })

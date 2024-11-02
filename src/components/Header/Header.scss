@@ -15,6 +15,7 @@ header {
       padding-bottom: 20px;
     }
     .logoAndUser {
+      width: 100%;
       margin-bottom: 24px;
       @include flex(flex, row, center, center);
       .logo {
@@ -31,6 +32,7 @@ header {
       }
     }
     .titleContainer {
+      width: 100%;
       @include flex(flex, row, center, center);
       @media (max-width: 400px) {
         @include flex(flex, column, center, center);
