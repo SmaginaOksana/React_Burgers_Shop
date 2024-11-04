@@ -1,5 +1,5 @@
 import "./App.scss";
-import { AuthPage, RegistrPage, HomePage, ErrorPage } from "../pages";
+import { AuthPage, RegistrPage, HomePage, ErrorPage, UserPage } from "../pages";
 import { Route, Routes } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
@@ -11,11 +11,11 @@ function App() {
   const [auth, setAuth] = useState(false);
   const [hidden, setHidden] = useState(true);
 
-  // useEffect(() => {
-  //   if (!auth) {
-  //     navigate("/registr");
-  //   }
-  // }, []);
+  useEffect(() => {
+    if (!auth) {
+      navigate("/registr");
+    }
+  }, []);
 
   return (
     <>
@@ -26,6 +26,7 @@ function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/registr" element={<RegistrPage />} />
             <Route path="/auth" element={<AuthPage setAuth={setAuth} />} />
+            <Route path="/user" element={<UserPage />} />
             <Route path="*" element={<ErrorPage setHidden={setHidden} />} />
           </Routes>
         </main>

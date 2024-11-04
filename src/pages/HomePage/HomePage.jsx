@@ -31,8 +31,8 @@ function HomePage() {
       }
       if (results[1].status === "fulfilled") {
         setBasketProducts({
-          data: results[1].value ? Object.values(results[1].value) : [],
-          dataKeys: results[1].value ? Object.keys(results[1].value) : [],
+          data: results[1].value ? Object.values(results[1]?.value) : [],
+          dataKeys: results[1].value ? Object.keys(results[1]?.value) : [],
           status: true,
         });
       }

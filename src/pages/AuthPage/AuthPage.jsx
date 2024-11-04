@@ -1,7 +1,7 @@
 import "./AuthPage.scss";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
 function AuthPage({ setAuth }) {
   const navigate = useNavigate();
@@ -13,11 +13,17 @@ function AuthPage({ setAuth }) {
   } = useForm({
     mode: "onBlur",
   });
-  const onSubmit = (data, e) => {
-    console.log(data);
-    reset();
-    navigate("/");
-    setAuth(true);
+
+  const onSubmit = async (data) => {
+    await signInWithEmailAndPassword(getAuth(), data.email, data.password)
+      .then(() => {
+        setAuth(true);
+        reset();
+        navigate("/");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
   const onError = (errors, e) => console.log(errors, e);
 
@@ -29,8 +35,8 @@ function AuthPage({ setAuth }) {
           <form onSubmit={handleSubmit(onSubmit, onError)} className="authForm">
             <input
               type="text"
-              {...register("login", { required: true, minLength: 4 })}
-              placeholder="Login"
+              {...register("email", { required: true, minLength: 4 })}
+              placeholder="Email"
             />
             {errors.login?.type === "minLength" && (
               <p>Поле не должно быть меньше 4 символов</p>

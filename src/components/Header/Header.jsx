@@ -2,6 +2,7 @@ import "./Header.scss";
 import logoTop from "../../assets/logoTop.png";
 import pic from "../../assets/pic.png";
 import user from "../../assets/user.png";
+import { Link } from "react-router-dom";
 
 function Header() {
   return (
@@ -12,7 +13,9 @@ function Header() {
             <img src={logoTop} alt="logo" />
           </div>
           <div className="user">
-            <img src={user} alt="user" />
+            <Link to="/user">
+              <img src={user} alt="user" />
+            </Link>
           </div>
         </div>
         <div className="titleContainer">

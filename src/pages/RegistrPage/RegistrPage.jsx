@@ -2,9 +2,10 @@ import "./RegistrPage.scss";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 
 function RegistrPage() {
-  const [success, setSuccess] = useState(false);
+  const [successRegistr, setSuccessRegistr] = useState(false);
 
   const {
     register,
@@ -16,10 +17,15 @@ function RegistrPage() {
     mode: "onBlur",
   });
 
-  const onSubmit = (data, e) => {
-    console.log(data);
+  const onSubmit = async (data) => {
+    await createUserWithEmailAndPassword(getAuth(), data.email, data.password)
+      .then(() => {
+        setSuccessRegistr(true);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
     reset();
-    setSuccess(true);
   };
 
   const onError = (errors, e) => console.log(errors, e);
@@ -28,7 +34,11 @@ function RegistrPage() {
     <div className="container">
       <div className="wrapperForm">
         <div className="registrContainer">
-          {success ? <p className="success">Вы зарегистрированы!</p> : ""}
+          {successRegistr ? (
+            <p className="success">Вы зарегистрированы!</p>
+          ) : (
+            ""
+          )}
           <h2 className="title">Регистрация аккаунта</h2>
           <form
             onSubmit={handleSubmit(onSubmit, onError)}
@@ -36,8 +46,8 @@ function RegistrPage() {
           >
             <input
               type="text"
-              {...register("login", { required: true, minLength: 4 })}
-              placeholder="Login"
+              {...register("name", { required: true, minLength: 4 })}
+              placeholder="Name"
             />
             {errors.login?.type === "minLength" && (
               <p>Поле не должно быть меньше 4 символов</p>
