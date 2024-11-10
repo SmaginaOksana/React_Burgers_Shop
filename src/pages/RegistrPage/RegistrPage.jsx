@@ -2,9 +2,12 @@ import "./RegistrPage.scss";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  sendEmailVerification,
+} from "firebase/auth";
 
-function RegistrPage() {
+function RegistrPage({ auth }) {
   const [successRegistr, setSuccessRegistr] = useState(false);
 
   const {
@@ -18,9 +21,14 @@ function RegistrPage() {
   });
 
   const onSubmit = async (data) => {
-    await createUserWithEmailAndPassword(getAuth(), data.email, data.password)
+    await createUserWithEmailAndPassword(auth, data.email, data.password)
       .then(() => {
         setSuccessRegistr(true);
+      })
+      .then(() => {
+        sendEmailVerification(auth.currentUser).then(() => {
+          console.log("email was sent successfully");
+        });
       })
       .catch((error) => {
         console.log(error);

@@ -1,6 +1,7 @@
 @import "../../../style/vars.scss";
 
 .meal {
+  cursor: pointer;
   padding: 12px;
   background-color: white;
   border-radius: 18px;
@@ -70,7 +71,7 @@
         @include font(12px, 400, 100%);
       }
     }
-    button {
+    .add {
       padding: 12px 101px;
       width: 100%;
       background-color: rgb(242, 242, 243);

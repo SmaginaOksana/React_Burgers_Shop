@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
-function AuthPage({ setAuth }) {
+function AuthPage({ auth }) {
   const navigate = useNavigate();
   const {
     register,
@@ -15,9 +15,8 @@ function AuthPage({ setAuth }) {
   });
 
   const onSubmit = async (data) => {
-    await signInWithEmailAndPassword(getAuth(), data.email, data.password)
+    await signInWithEmailAndPassword(auth, data.email, data.password)
       .then(() => {
-        setAuth(true);
         reset();
         navigate("/");
       })
