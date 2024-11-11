@@ -1,17 +1,18 @@
 import "./ProductItem.scss";
 import { addItemBasket } from "../../../functions/addItemBasket";
 import MealDescription from "../MealDescription/MealDescription";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
 function ProductItem({ item, upload, basketProducts, index, activeTab }) {
-  const { name, weight, price } = item;
+  const { name, weight, price, onSale } = item;
   const urlImg = `products/${activeTab.name_products}/${activeTab.name_products}_${index}.png`;
   const [description, setDescription] = useState(false);
+  const onSaleClass = onSale ? "meal onSale" : "meal";
 
   return (
     <>
       <div
-        className="meal"
+        className={`${onSaleClass}`}
         onClick={() => {
           setDescription((prev) => !prev);
         }}
@@ -20,11 +21,15 @@ function ProductItem({ item, upload, basketProducts, index, activeTab }) {
           <img src={urlImg} alt={name} />
         </div>
         <div className="description">
-          <div>
-            <span className="price">{price} ₽</span>
+          <div className="price">
+            <span className="priceSpan">{price} ₽</span>
+            <span className="action">{onSale ? "on Sale" : ""}</span>
           </div>
           <div>
             <span className="name">{name}</span>
+          </div>
+          <div>
+            <span className="weight">{}</span>
           </div>
           <div>
             <span className="weight">{weight}</span>

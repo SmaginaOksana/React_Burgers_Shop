@@ -27,7 +27,7 @@
   }
   @media (max-width: 400px) {
     @include flex(flex, column, space-between, center);
-    height: 180px;
+    height: 200px;
   }
   .image {
     @media (max-width: 500px) {
@@ -51,9 +51,20 @@
     }
     .name,
     .weight,
-    .price {
+    .priceSpan,
+    .action {
       @include font(12px, 400, 16px);
       display: block;
+    }
+    .price {
+      @include flex(flex, row, space-between, center);
+      .priceSpan {
+        width: 39%;
+      }
+      .action {
+        width: 50%;
+        color: red;
+      }
     }
     .name {
       margin-bottom: 1px;

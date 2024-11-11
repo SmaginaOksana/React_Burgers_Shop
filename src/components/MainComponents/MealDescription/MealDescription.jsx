@@ -9,7 +9,7 @@ function MealDescription({
   urlImg,
   setDescription,
 }) {
-  const { name, price } = item;
+  const { name, price, description } = item;
 
   let activeIndex;
   let activeProduct;
@@ -41,14 +41,7 @@ function MealDescription({
             <img src={urlImg} alt={name} />
           </div>
           <div className="description">
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum
-              voluptate omnis repellat. Laborum nam mollitia tempore pariatur
-              eligendi explicabo itaque, ad sunt quod officia quasi ea magni
-              magnam commodi voluptates expedita odio, earum, ducimus saepe
-              maiores doloribus. Unde, eligendi repudiandae. Quis suscipit,
-              quibusdam incidunt quia distinctio natus fugiat doloribus tenetur?
-            </p>
+            <p>{description}</p>
           </div>
         </div>
         <div className="wrapperButton">

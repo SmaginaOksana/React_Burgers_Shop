@@ -36,17 +36,25 @@
     }
     .name,
     .weight,
-    .price {
+    .priceSpan,
+    .action {
       display: block;
     }
     .price {
-      margin-bottom: 8px;
-      @include font(24px, 600, 100%);
-      @media (max-width: 1100px) {
-        @include font(16px, 400, 100%);
+      @include flex(flex, row, space-between, center);
+      .action {
+        color: red;
       }
-      @media (max-width: 600px) {
-        @include font(14px, 400, 100%);
+      .action,
+      .priceSpan {
+        margin-bottom: 8px;
+        @include font(24px, 600, 100%);
+        @media (max-width: 1100px) {
+          @include font(16px, 400, 100%);
+        }
+        @media (max-width: 600px) {
+          @include font(14px, 400, 100%);
+        }
       }
     }
     .name {
@@ -87,4 +95,7 @@
       }
     }
   }
+}
+.meal.onSale {
+  background-color: rgb(244, 221, 221);
 }

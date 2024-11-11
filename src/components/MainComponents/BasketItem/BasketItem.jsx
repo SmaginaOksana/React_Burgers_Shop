@@ -2,7 +2,7 @@ import "./BasketItem.scss";
 import { editProductsCount } from "../../../functions/productsCount";
 
 function BasketItem({ item, upload, activeIndex }) {
-  const { name, weight, price, count, urlImg } = item;
+  const { name, weight, price, count, urlImg, onSale } = item;
 
   return (
     <div className="containerFood">
@@ -16,8 +16,9 @@ function BasketItem({ item, upload, activeIndex }) {
         <div>
           <span className="weight">{weight}</span>
         </div>
-        <div>
-          <span className="price">{price} ₽</span>
+        <div className="price">
+          <span className="priceSpan">{price} ₽</span>
+          <span className="action">{onSale ? "on Sale" : ""}</span>
         </div>
       </div>
       <div className="amount">

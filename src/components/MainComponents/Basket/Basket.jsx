@@ -11,6 +11,7 @@ function Basket({ basketProducts, upload }) {
     setFreeDelivery({
       count: allProductsCount(basketProducts),
       price: allProductsCount(basketProducts, true),
+      onSale: basketProducts.filter((item) => item.onSale === true),
     });
   }, [upload]);
 
@@ -46,18 +47,29 @@ function Basket({ basketProducts, upload }) {
           <span>₽</span>
         </div>
       </div>
-      <button className="toOrder">Оформить заказ</button>
+      {basketProducts.length ? (
+        <button className="toOrder">Оформить заказ</button>
+      ) : (
+        ""
+      )}
       <div className="delivery">
-        <div>
+        <div className="img">
           <img src={delivery} alt="delivery" />
         </div>
         {freeDelivery.count >= 3 || freeDelivery.price >= 1500 ? (
-          <span>Бесплатная доставка</span>
+          // || freeDelivery.onSale.length > 0
+          <div className="list">
+            <span>Бесплатная доставка</span>
+          </div>
         ) : (
-          <span>
-            Бесплатная доставка при заказе от 3-х товаров или на сумму свыше
-            1000 руб.
-          </span>
+          <div className="list">
+            <span>Бесплатная доставка при заказе:</span>
+            <ul>
+              <li>акционного товара</li>
+              <li>от 3-х товаров в корзине</li>
+              <li>на сумму свыше 1000 руб.</li>
+            </ul>
+          </div>
         )}
       </div>
     </>

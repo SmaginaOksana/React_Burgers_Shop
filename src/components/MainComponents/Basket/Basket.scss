@@ -72,12 +72,29 @@ hr {
 }
 .delivery {
   width: 100%;
-  @include flex(flex, row, flex-start, center);
-  gap: 8px;
-  img {
-    display: block;
+  @include flex(flex, row, space-between, center);
+  .img {
+    width: 20%;
+    @include flex(flex, row, center, center);
+    img {
+      display: block;
+    }
   }
-  span {
-    @include font(12px, 400, 16px);
+  .list {
+    width: 80%;
+    span {
+      @include font(12px, 700, 16px);
+      color: red;
+    }
+    ul {
+      margin-left: 12px;
+      @include font(12px, 400, 16px);
+      @media (max-width: 1100px) {
+        @include flex(flex, row, space-between, center);
+      }
+      @media (max-width: 700px) {
+        @include flex(flex, column, space-between, flex-start);
+      }
+    }
   }
 }
