@@ -39,3 +39,26 @@ export function removeBasketProduct(key) {
   const dataRef = ref(database, "/basket/" + key);
   return remove(dataRef, key);
 }
+export function updateUsers(user) {
+  const dataRef = ref(database, "/users");
+  return push(dataRef, user);
+}
+export async function getUsersData() {
+  const starCountRef = ref(database, "/users/");
+  return await new Promise((resolve, reject) => {
+    onValue(
+      starCountRef,
+      (snapshot) => {
+        const data = snapshot.val();
+        resolve(data);
+      },
+      (error) => {
+        reject(error);
+      }
+    );
+  });
+}
+export function updateUserPassword(item, key) {
+  const dataRef = ref(database, "/users/" + key);
+  return update(dataRef, item);
+}

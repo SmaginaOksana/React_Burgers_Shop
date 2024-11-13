@@ -7,7 +7,7 @@ function MealDescription({
   upload,
   basketProducts,
   urlImg,
-  setDescription,
+  setMealDescription,
 }) {
   const { name, price, description } = item;
 
@@ -24,7 +24,7 @@ function MealDescription({
     <div
       className="wrapperModal"
       onClick={() => {
-        setDescription(false);
+        setMealDescription(false);
       }}
     >
       <div

@@ -3,9 +3,15 @@ import { useEffect, useState } from "react";
 import BasketItem from "../BasketItem/BasketItem";
 import delivery from "../../../assets/delivery.png";
 import { allProductsCount } from "../../../functions/productsCount";
+import Order from "../Order/Order";
 
-function Basket({ basketProducts, upload }) {
-  const [freeDelivery, setFreeDelivery] = useState({});
+function Basket({ basketProducts, upload, userFB }) {
+  const [freeDelivery, setFreeDelivery] = useState({
+    count: 0,
+    price: 0,
+    onSale: "",
+  });
+  const [order, setOrder] = useState(false);
 
   useEffect(() => {
     setFreeDelivery({
@@ -17,6 +23,7 @@ function Basket({ basketProducts, upload }) {
 
   return (
     <>
+      {order ? <Order setOrder={setOrder} userFB={userFB} /> : ""}
       <div className="basket">
         <h2 className="basketTitle">Корзина</h2>
         <div className="amount">
@@ -48,7 +55,14 @@ function Basket({ basketProducts, upload }) {
         </div>
       </div>
       {basketProducts.length ? (
-        <button className="toOrder">Оформить заказ</button>
+        <button
+          className="toOrder"
+          onClick={() => {
+            setOrder(true);
+          }}
+        >
+          Оформить заказ
+        </button>
       ) : (
         ""
       )}
@@ -56,8 +70,9 @@ function Basket({ basketProducts, upload }) {
         <div className="img">
           <img src={delivery} alt="delivery" />
         </div>
-        {freeDelivery.count >= 3 || freeDelivery.price >= 1500 ? (
-          // || freeDelivery.onSale.length > 0
+        {freeDelivery.count >= 3 ||
+        freeDelivery.price >= 1500 ||
+        freeDelivery.onSale.length > 0 ? (
           <div className="list">
             <span>Бесплатная доставка</span>
           </div>

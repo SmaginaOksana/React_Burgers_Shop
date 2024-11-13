@@ -6,8 +6,9 @@ import { navigationButtons } from "../../content/content.json";
 import Navigation from "../../components/MainComponents/Navigation/Navigation";
 import Products from "../../components/MainComponents/Products/Products";
 import { getData } from "../../services/FB_server";
+import { getUsersData } from "../../services/FB_server";
 
-function HomePage() {
+function HomePage({ auth }) {
   const [activeTab, setActiveTab] = useState({
     image: "navButtons/icon_burger.png",
     name: "Бургеры",
@@ -18,28 +19,50 @@ function HomePage() {
     data: [],
     status: false,
   });
+  const [userFB, setUserFB] = useState({
+    name: "",
+    phone: "",
+    email: "",
+    status: false,
+  });
   const [dataFlag, setDataFlag] = useState(false);
   const upload = { dataFlag, setDataFlag, dataKeys: basketProducts.dataKeys };
 
   useEffect(() => {
     const productsServer = getData(activeTab.name_products);
     const basketServer = getData("basket");
+    const usersServer = getUsersData();
 
-    Promise.allSettled([productsServer, basketServer]).then((results) => {
-      if (results[0].status === "fulfilled") {
-        setProductsAll({ data: results[0].value || [], status: true });
+    Promise.allSettled([productsServer, basketServer, usersServer]).then(
+      (results) => {
+        if (results[0].status === "fulfilled") {
+          setProductsAll({ data: results[0].value || [], status: true });
+        }
+        if (results[1].status === "fulfilled") {
+          setBasketProducts({
+            data: results[1].value ? Object.values(results[1]?.value) : [],
+            dataKeys: results[1].value ? Object.keys(results[1]?.value) : [],
+            status: true,
+          });
+        }
+        if (results[2].status === "fulfilled") {
+          for (let key in results[2].value) {
+            if (results[2].value[key].email === auth.currentUser.email) {
+              setUserFB({
+                name: results[2].value[key].name,
+                phone: results[2].value[key].phone,
+                email: results[2].value[key].email,
+                password: results[2].value[key].password,
+                status: true,
+              });
+            }
+          }
+        }
       }
-      if (results[1].status === "fulfilled") {
-        setBasketProducts({
-          data: results[1].value ? Object.values(results[1]?.value) : [],
-          dataKeys: results[1].value ? Object.keys(results[1]?.value) : [],
-          status: true,
-        });
-      }
-    });
+    );
   }, [dataFlag, activeTab]);
 
-  if (!productsAll.status || !basketProducts.status) {
+  if (!productsAll.status || !basketProducts.status || !userFB.status) {
     return <Spinner />;
   }
 
@@ -60,7 +83,11 @@ function HomePage() {
         </div>
         <h2 className="mainTitle">{activeTab.name}</h2>
         <div className="basketContainer">
-          <Basket upload={upload} basketProducts={basketProducts.data} />
+          <Basket
+            upload={upload}
+            basketProducts={basketProducts.data}
+            userFB={userFB}
+          />
         </div>
         <div className="mealContainer">
           <Products

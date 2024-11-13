@@ -35,9 +35,9 @@ function AuthPage({ auth }) {
             <input
               type="text"
               {...register("email", { required: true, minLength: 4 })}
-              placeholder="Email"
+              placeholder="Электронная почта"
             />
-            {errors.login?.type === "minLength" && (
+            {errors.email?.type === "minLength" && (
               <p>Поле не должно быть меньше 4 символов</p>
             )}
             <input
@@ -47,7 +47,7 @@ function AuthPage({ auth }) {
                 pattern: /^[A-Za-z]+$/,
                 minLength: 8,
               })}
-              placeholder="Password"
+              placeholder="Пароль"
             />
             {errors.password?.type === "minLength" && (
               <p>Поле не должно быть меньше 8 символов</p>

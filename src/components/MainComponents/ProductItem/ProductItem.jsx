@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 function ProductItem({ item, upload, basketProducts, index, activeTab }) {
   const { name, weight, price, onSale } = item;
   const urlImg = `products/${activeTab.name_products}/${activeTab.name_products}_${index}.png`;
-  const [description, setDescription] = useState(false);
+  const [mealDescription, setMealDescription] = useState(false);
   const onSaleClass = onSale ? "meal onSale" : "meal";
 
   return (
@@ -14,7 +14,7 @@ function ProductItem({ item, upload, basketProducts, index, activeTab }) {
       <div
         className={`${onSaleClass}`}
         onClick={() => {
-          setDescription((prev) => !prev);
+          setMealDescription((prev) => !prev);
         }}
       >
         <div className="image">
@@ -45,13 +45,13 @@ function ProductItem({ item, upload, basketProducts, index, activeTab }) {
           </button>
         </div>
       </div>
-      {description ? (
+      {mealDescription ? (
         <MealDescription
           item={item}
           upload={upload}
           basketProducts={basketProducts}
           urlImg={urlImg}
-          setDescription={setDescription}
+          setMealDescription={setMealDescription}
         />
       ) : (
         ""

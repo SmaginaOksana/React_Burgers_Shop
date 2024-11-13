@@ -1,0 +1,97 @@
+@import "../../../style/vars.scss";
+.wrapperOrder {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  @include flex(flex, row, center, center);
+  .modalOrder {
+    background-color: rgb(249, 249, 249);
+    border-radius: 24px;
+    @include flex(flex, row, space-between, center);
+    width: 60%;
+    max-width: 800px;
+    border-radius: 24px;
+    padding: 24px;
+    @media (max-width: 1000px) {
+      width: 70%;
+    }
+    .orderImage {
+      @include flex(flex, row, center, center);
+      width: 50%;
+      img {
+        width: 100%;
+      }
+    }
+    .toSetOrder {
+      background-color: rgb(249, 249, 249);
+      @include flex(flex, column, center, center);
+      width: 50%;
+      .closeImage {
+        width: 90%;
+        @include flex(flex, row, flex-end, center);
+        img {
+          width: 24px;
+        }
+      }
+      .title {
+        @include font(24px, 600, 100%);
+        margin-bottom: 12px;
+        text-align: center;
+        @media (max-width: 1100px) {
+          width: 100%;
+          @include font(20px, 600, 100%);
+        }
+      }
+      .orderForm {
+        width: 90%;
+        @include flex(flex, column, space-between, center);
+        gap: 15px;
+        input {
+          padding: 8px;
+          width: 100%;
+          border: grey 0.5px solid;
+          &::placeholder {
+            @include font(16px, 400, 100%);
+          }
+          &:focus {
+            outline: none;
+            &::placeholder {
+              opacity: 0;
+            }
+          }
+        }
+        .radio {
+          width: 100%;
+          @include flex(flex, column, space-between, flex-start);
+          gap: 10px;
+          label {
+            @include flex(flex, row, flex-start, center);
+            gap: 10px;
+            @include font(14px, 600, 100%);
+          }
+        }
+        p {
+          color: red;
+        }
+        input[type="submit"] {
+          padding: 12px 71px;
+          color: white;
+          @include font(20px, 700, 100%);
+          border-radius: 12px;
+          background-color: rgb(255, 112, 32);
+          border: none;
+          margin-bottom: 12px;
+          @media (max-width: 800px) {
+            padding: 12px 0;
+          }
+          @media (max-width: 600px) {
+            @include font(14px, 400, 100%);
+          }
+        }
+      }
+    }
+  }
+}

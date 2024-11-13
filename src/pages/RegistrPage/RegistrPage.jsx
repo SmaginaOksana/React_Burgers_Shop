@@ -6,6 +6,7 @@ import {
   createUserWithEmailAndPassword,
   sendEmailVerification,
 } from "firebase/auth";
+import { updateUsers } from "../../services/FB_server";
 
 function RegistrPage({ auth }) {
   const [successRegistr, setSuccessRegistr] = useState(false);
@@ -21,6 +22,7 @@ function RegistrPage({ auth }) {
   });
 
   const onSubmit = async (data) => {
+    console.log(data);
     await createUserWithEmailAndPassword(auth, data.email, data.password)
       .then(() => {
         setSuccessRegistr(true);
@@ -32,8 +34,11 @@ function RegistrPage({ auth }) {
       })
       .catch((error) => {
         console.log(error);
+      })
+      .finally(() => {
+        reset();
       });
-    reset();
+    await updateUsers(data);
   };
 
   const onError = (errors, e) => console.log(errors, e);
@@ -55,17 +60,40 @@ function RegistrPage({ auth }) {
             <input
               type="text"
               {...register("name", { required: true, minLength: 4 })}
-              placeholder="Name"
+              placeholder="Имя"
             />
-            {errors.login?.type === "minLength" && (
+            {errors.name?.type === "minLength" && (
               <p>Поле не должно быть меньше 4 символов</p>
             )}
             <input
+              type="text"
+              {...register("phone", {
+                required: true,
+                pattern: /^\d{3}-\d{2}-\d{3}-\d{2}-\d{2}$/,
+              })}
+              placeholder="375-00-000-00-00"
+            />
+            {errors.phone?.type === "pattern" && (
+              <p>
+                Номер телефона должен состоять из цифр и не содержать знак "+"
+              </p>
+            )}
+            <input
+              type="text"
               {...register("email", {
                 required: true,
                 minLength: 10,
               })}
               placeholder="email@gmail.com"
+            />
+            {errors.email?.type === "minLength" && (
+              <p>Поле не должно быть меньше 10 символов</p>
+            )}
+            <input
+              type="date"
+              {...register("birth", {
+                required: true,
+              })}
             />
             {errors.email?.type === "minLength" && (
               <p>Поле не должно быть меньше 10 символов</p>
@@ -77,7 +105,7 @@ function RegistrPage({ auth }) {
                 pattern: /^[A-Za-z]+$/,
                 minLength: 8,
               })}
-              placeholder="Password"
+              placeholder="Пароль"
             />
             {errors.password?.type === "minLength" && (
               <p>Поле не должно быть меньше 8 символов</p>
@@ -85,7 +113,6 @@ function RegistrPage({ auth }) {
             {errors.password?.type === "pattern" && (
               <p>Пароль должен состоять из латинских букв и не содержать $</p>
             )}
-
             <input
               type="text"
               {...register("confirmPassword", {
@@ -96,7 +123,7 @@ function RegistrPage({ auth }) {
                   return password === value || "Пароли не совпадают!";
                 },
               })}
-              placeholder="Confirm password"
+              placeholder="Повторите пароль"
             />
             {errors.confirmPassword?.type === "minLength" && (
               <p>Поле не должно быть меньше 8 символов</p>
@@ -104,12 +131,11 @@ function RegistrPage({ auth }) {
             {errors.confirmPassword?.type === "validate" && (
               <p>Пароли не совпадают</p>
             )}
-
-            {(errors.login ||
+            {(errors.name ||
+              errors.phone ||
               errors.email ||
               errors.password ||
               errors.confirmPassword) && <p>Все поля должны быть заполнены</p>}
-
             <input type="submit" value="Зарегистрироваться" />
           </form>
           <div className="logIn">

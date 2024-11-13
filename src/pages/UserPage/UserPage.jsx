@@ -6,15 +6,14 @@ import "./UserPage.scss";
 import {
   signOut,
   updatePassword,
-  deleteUser,
   reauthenticateWithCredential,
 } from "firebase/auth";
-import { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-function UserPage({ auth, user }) {
+function UserPage({ auth }) {
   const navigate = useNavigate();
+  const user = auth.currentUser;
   const {
     register,
     reset,
@@ -66,7 +65,7 @@ function UserPage({ auth, user }) {
           </h2>
           <h2 className="title">Вы можете изменить пароль...</h2>
           <form
-            className="form"
+            className="userPageForm"
             onSubmit={(e) => {
               e.preventDefault();
               changePassword();
