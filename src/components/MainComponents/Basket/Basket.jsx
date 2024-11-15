@@ -3,15 +3,13 @@ import { useEffect, useState } from "react";
 import BasketItem from "../BasketItem/BasketItem";
 import delivery from "../../../assets/delivery.png";
 import { allProductsCount } from "../../../functions/productsCount";
-import Order from "../Order/Order";
 
-function Basket({ basketProducts, upload, userFB }) {
+function Basket({ basketProducts, upload, setOrder }) {
   const [freeDelivery, setFreeDelivery] = useState({
     count: 0,
     price: 0,
     onSale: "",
   });
-  const [order, setOrder] = useState(false);
 
   useEffect(() => {
     setFreeDelivery({
@@ -23,7 +21,6 @@ function Basket({ basketProducts, upload, userFB }) {
 
   return (
     <>
-      {order ? <Order setOrder={setOrder} userFB={userFB} /> : ""}
       <div className="basket">
         <h2 className="basketTitle">Корзина</h2>
         <div className="amount">

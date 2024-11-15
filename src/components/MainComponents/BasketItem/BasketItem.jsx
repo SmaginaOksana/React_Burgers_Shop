@@ -17,7 +17,12 @@ function BasketItem({ item, upload, activeIndex }) {
           <span className="weight">{weight}</span>
         </div>
         <div className="price">
-          <span className="priceSpan">{price} ₽</span>
+          <span className={onSale ? "priceSpan actionPrice" : "priceSpan"}>
+            {price}₽
+          </span>
+          <span className="priceSpan action">
+            {onSale ? Math.round(price * 0.8) + `₽` : ""}
+          </span>
           <span className="action">{onSale ? "on Sale" : ""}</span>
         </div>
       </div>

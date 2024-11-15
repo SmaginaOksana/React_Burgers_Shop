@@ -1,14 +1,23 @@
 import "./AuthPage.scss";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import {
+  signInWithEmailAndPassword,
+  sendPasswordResetEmail,
+} from "firebase/auth";
+import { useState } from "react";
 
 function AuthPage({ auth }) {
   const navigate = useNavigate();
+  const [emailLetter, setEmailLetter] = useState({
+    email: false,
+    letter: false,
+  });
   const {
     register,
     handleSubmit,
     reset,
+    getValues,
     formState: { errors },
   } = useForm({
     mode: "onBlur",
@@ -25,6 +34,26 @@ function AuthPage({ auth }) {
       });
   };
   const onError = (errors, e) => console.log(errors, e);
+
+  const forgetPassword = () => {
+    const { email } = getValues();
+    if (!email) {
+      setEmailLetter({
+        email: true,
+        letter: false,
+      });
+    }
+    sendPasswordResetEmail(auth, email)
+      .then(() => {
+        setEmailLetter({
+          email: false,
+          letter: true,
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   return (
     <div className="container">
@@ -64,6 +93,26 @@ function AuthPage({ auth }) {
           <div className="signUp">
             <Link to="/registr">Зарегистрироваться</Link>
           </div>
+          <button
+            className="forget"
+            onClick={() => {
+              forgetPassword();
+            }}
+          >
+            Забыли пароль
+          </button>
+          {emailLetter.letter ? (
+            <p className="letter">
+              Письмо для смены пароля отправлено на электронную почту
+            </p>
+          ) : (
+            ""
+          )}
+          {emailLetter.email ? (
+            <p className="letter">Для смены пароля введите электронную почту</p>
+          ) : (
+            ""
+          )}
         </div>
       </div>
     </div>

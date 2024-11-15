@@ -11,6 +11,12 @@ function App() {
   const navigate = useNavigate();
   const [hidden, setHidden] = useState(true);
   const auth = getAuth();
+  const [userFB, setUserFB] = useState({
+    name: "",
+    phone: "",
+    email: "",
+    status: false,
+  });
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
@@ -34,10 +40,18 @@ function App() {
         {hidden && <Header />}
         <main>
           <Routes>
-            <Route path="/" element={<HomePage auth={auth} />} />
+            <Route
+              path="/"
+              element={
+                <HomePage auth={auth} userFB={userFB} setUserFB={setUserFB} />
+              }
+            />
             <Route path="/registr" element={<RegistrPage auth={auth} />} />
             <Route path="/auth" element={<AuthPage auth={auth} />} />
-            <Route path="/user" element={<UserPage auth={auth} />} />
+            <Route
+              path="/user"
+              element={<UserPage auth={auth} userFB={userFB} />}
+            />
             <Route path="*" element={<ErrorPage setHidden={setHidden} />} />
           </Routes>
         </main>

@@ -5,13 +5,18 @@ function Order({ setOrder, userFB }) {
   const [userName, setUserName] = useState(userFB.name);
   const [userPhone, setUserPhone] = useState(userFB.phone);
   const [userEmail, setUserEmail] = useState(userFB.email);
+  const [inputDelivery, setInputDelivery] = useState("");
+  const [inputTakeOff, setInputTakeOff] = useState("");
 
   const handleSubmit = () => {
     const data = {
       name: userName,
       phone: userPhone,
       email: userEmail,
+      delivery: inputDelivery,
+      takeOff: inputTakeOff,
     };
+    setOrder(false);
     console.log(data);
   };
 
@@ -74,11 +79,27 @@ function Order({ setOrder, userFB }) {
             />
             <div className="radio">
               <label htmlFor="delivery">
-                <input type="radio" id="delivery" name="radio" />
+                <input
+                  type="radio"
+                  id="delivery"
+                  name="radio"
+                  value="delivery"
+                  onChange={(event) => {
+                    setInputDelivery(event.target.value);
+                  }}
+                />
                 Доставка
               </label>
               <label htmlFor="takeOff">
-                <input type="radio" id="takeOff" name="radio" />
+                <input
+                  type="radio"
+                  id="takeOff"
+                  name="radio"
+                  value="takeOff"
+                  onChange={(event) => {
+                    setInputTakeOff(event.target.value);
+                  }}
+                />
                 Самовывоз
               </label>
             </div>

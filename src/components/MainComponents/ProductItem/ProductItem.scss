@@ -44,6 +44,10 @@
       @include flex(flex, row, space-between, center);
       .action {
         color: red;
+        width: 70%;
+      }
+      .actionPrice {
+        text-decoration: line-through;
       }
       .action,
       .priceSpan {

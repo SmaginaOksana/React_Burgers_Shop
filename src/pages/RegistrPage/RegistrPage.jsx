@@ -38,7 +38,13 @@ function RegistrPage({ auth }) {
       .finally(() => {
         reset();
       });
-    await updateUsers(data);
+    await updateUsers(data)
+      .then(() => {
+        console.log("success");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   const onError = (errors, e) => console.log(errors, e);

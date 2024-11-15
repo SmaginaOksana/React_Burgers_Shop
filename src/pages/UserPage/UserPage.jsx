@@ -1,7 +1,3 @@
-import {
-  EmailAuthCredential,
-  EmailAuthProvider,
-} from "firebase/auth/web-extension";
 import "./UserPage.scss";
 import {
   signOut,
@@ -10,8 +6,10 @@ import {
 } from "firebase/auth";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { updateUserPassword } from "../../services/FB_server";
 
-function UserPage({ auth }) {
+function UserPage({ auth, userFB }) {
   const navigate = useNavigate();
   const user = auth.currentUser;
   const {
@@ -23,23 +21,41 @@ function UserPage({ auth }) {
     mode: "onBlur",
   });
 
+  const credentialFirebase = {
+    email: getValues().email,
+    password: getValues.previousPassword,
+  };
+  const credentialUserFB = {
+    confirmPassword: getValues().newPassword,
+    email: getValues().email,
+    name: userFB.name,
+    password: getValues().newPassword,
+    phone: userFB.phone,
+    birth: userFB.birth,
+  };
+
   const changePassword = async () => {
-    const credential = "";
-    const password = getValues().newPassword;
-    await reauthenticateWithCredential(user, credential)
+    await reauthenticateWithCredential(credentialFirebase)
       .then(() => {
-        updatePassword(user, password)
+        updatePassword(user, getValues().newPassword)
           .then(() => {
             console.log("success");
+            updateUserPassword(credentialUserFB, userFB.key)
+              .then(() => {
+                console.log("success");
+              })
+              .catch((error) => {
+                console.log(error);
+              });
           })
           .catch((error) => {
             console.log(error);
-          })
-          .finally(() => reset());
+          });
       })
       .catch((error) => {
         console.log(error);
-      });
+      })
+      .finally(() => reset());
   };
   const logOut = () => {
     signOut(auth)
@@ -57,11 +73,8 @@ function UserPage({ auth }) {
         <div className="userContainer">
           <h1 className="title">Profile</h1>
           <h2 className="title">
-            Здравствуйте,{" "}
-            {!auth.currentUser.displayName
-              ? "Пользователь"
-              : auth.currentUser.displayName}
-            !
+            Здравствуйте,
+            {user.displayName ? user.displayName : " Пользователь"}!
           </h2>
           <h2 className="title">Вы можете изменить пароль...</h2>
           <form
@@ -73,6 +86,14 @@ function UserPage({ auth }) {
           >
             <input
               type="text"
+              {...register("email", {
+                required: true,
+                minLength: 8,
+              })}
+              placeholder="Email"
+            />
+            <input
+              type="text"
               {...register("previousPassword", {
                 required: true,
                 pattern: /^[A-Za-z]+$/,
@@ -80,6 +101,7 @@ function UserPage({ auth }) {
               })}
               placeholder="Previous password"
             />
+
             <input
               type="text"
               {...register("newPassword", {
@@ -101,8 +123,8 @@ function UserPage({ auth }) {
                 required: true,
                 minLength: 8,
                 validate: (value) => {
-                  const { password } = getValues();
-                  return password === value || "Пароли не совпадают!";
+                  const { newPassword } = getValues();
+                  return newPassword === value || "Пароли не совпадают!";
                 },
               })}
               placeholder="Confirm new password"

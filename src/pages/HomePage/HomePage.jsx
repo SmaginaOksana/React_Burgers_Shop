@@ -5,10 +5,11 @@ import Spinner from "../../components/Spinner/Spinner";
 import { navigationButtons } from "../../content/content.json";
 import Navigation from "../../components/MainComponents/Navigation/Navigation";
 import Products from "../../components/MainComponents/Products/Products";
+import Order from "../../components/MainComponents/Order/Order";
 import { getData } from "../../services/FB_server";
 import { getUsersData } from "../../services/FB_server";
 
-function HomePage({ auth }) {
+function HomePage({ auth, userFB, setUserFB }) {
   const [activeTab, setActiveTab] = useState({
     image: "navButtons/icon_burger.png",
     name: "Бургеры",
@@ -19,12 +20,8 @@ function HomePage({ auth }) {
     data: [],
     status: false,
   });
-  const [userFB, setUserFB] = useState({
-    name: "",
-    phone: "",
-    email: "",
-    status: false,
-  });
+
+  const [order, setOrder] = useState(false);
   const [dataFlag, setDataFlag] = useState(false);
   const upload = { dataFlag, setDataFlag, dataKeys: basketProducts.dataKeys };
 
@@ -53,7 +50,9 @@ function HomePage({ auth }) {
                 phone: results[2].value[key].phone,
                 email: results[2].value[key].email,
                 password: results[2].value[key].password,
+                birth: results[2].value[key].birth,
                 status: true,
+                key: key,
               });
             }
           }
@@ -69,6 +68,7 @@ function HomePage({ auth }) {
   return (
     <>
       <div className="container">
+        {order ? <Order setOrder={setOrder} userFB={userFB} /> : ""}
         <div className="buttonsContainer">
           {navigationButtons.map((button, index) => {
             return (
@@ -87,6 +87,7 @@ function HomePage({ auth }) {
             upload={upload}
             basketProducts={basketProducts.data}
             userFB={userFB}
+            setOrder={setOrder}
           />
         </div>
         <div className="mealContainer">

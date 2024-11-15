@@ -56,6 +56,9 @@
       @include font(12px, 400, 16px);
       display: block;
     }
+    .actionPrice {
+      display: none;
+    }
     .price {
       @include flex(flex, row, space-between, center);
       .priceSpan {
