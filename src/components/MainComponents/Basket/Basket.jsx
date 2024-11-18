@@ -15,7 +15,7 @@ function Basket({ basketProducts, upload, setOrder }) {
     setFreeDelivery({
       count: allProductsCount(basketProducts),
       price: allProductsCount(basketProducts, true),
-      onSale: basketProducts.filter((item) => item.onSale === true),
+      onSale: basketProducts.filter((item) => item.onSale),
     });
   }, [upload]);
 
@@ -79,7 +79,7 @@ function Basket({ basketProducts, upload, setOrder }) {
             <ul>
               <li>акционного товара</li>
               <li>от 3-х товаров в корзине</li>
-              <li>на сумму свыше 1000 руб.</li>
+              <li>на сумму свыше 1500 руб.</li>
             </ul>
           </div>
         )}

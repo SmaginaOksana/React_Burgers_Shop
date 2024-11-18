@@ -45,15 +45,17 @@ function HomePage({ auth, userFB, setUserFB }) {
         if (results[2].status === "fulfilled") {
           for (let key in results[2].value) {
             if (results[2].value[key].email === auth.currentUser.email) {
-              setUserFB({
-                name: results[2].value[key].name,
-                phone: results[2].value[key].phone,
-                email: results[2].value[key].email,
-                password: results[2].value[key].password,
-                birth: results[2].value[key].birth,
-                status: true,
-                key: key,
-              });
+              setUserFB(
+                {
+                  name: results[2].value[key].name,
+                  phone: results[2].value[key].phone,
+                  email: results[2].value[key].email,
+                  password: results[2].value[key].password,
+                  birth: results[2].value[key].birth,
+                  status: true,
+                  key: key,
+                } || {}
+              );
             }
           }
         }
@@ -86,7 +88,6 @@ function HomePage({ auth, userFB, setUserFB }) {
           <Basket
             upload={upload}
             basketProducts={basketProducts.data}
-            userFB={userFB}
             setOrder={setOrder}
           />
         </div>

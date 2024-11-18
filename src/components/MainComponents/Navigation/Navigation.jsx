@@ -7,7 +7,7 @@ function Navigation({ button, activeTab, setActiveTab }) {
 
   return (
     <button
-      className={`${activeClass}`}
+      className={activeClass}
       onClick={() => {
         setActiveTab(button);
       }}

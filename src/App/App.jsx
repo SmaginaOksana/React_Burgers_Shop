@@ -16,6 +16,9 @@ function App() {
     phone: "",
     email: "",
     status: false,
+    password: "",
+    birth: "",
+    key: "",
   });
 
   useEffect(() => {
