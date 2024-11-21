@@ -131,6 +131,9 @@
             color: rgb(255, 112, 32);
             text-decoration: none;
             @include font(20px, 700, 100%);
+            margin-bottom: 12px;
+            border-radius: 12px;
+            border: 1px solid rgb(255, 112, 32);
             &:hover {
               text-decoration: underline;
             }
@@ -138,9 +141,6 @@
               @include font(16px, 400, 100%);
             }
           }
-          margin-bottom: 12px;
-          border-radius: 12px;
-          border: 1px solid rgb(255, 112, 32);
         }
       }
     }

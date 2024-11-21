@@ -6,7 +6,6 @@ import {
 } from "firebase/auth";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
 import { updateUserPassword } from "../../services/FB_server";
 
 function UserPage({ auth, userFB }) {
