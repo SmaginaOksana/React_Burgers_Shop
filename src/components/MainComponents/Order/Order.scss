@@ -18,9 +18,22 @@
     @media (max-width: 1000px) {
       width: 70%;
     }
+    @media (max-width: 800px) {
+      width: 90%;
+      padding: 10px;
+    }
+    @media (max-width: 400px) {
+      @include flex(flex, row, center, center);
+    }
     .orderImage {
       @include flex(flex, row, center, center);
       width: 50%;
+      @media (max-width: 500px) {
+        width: 40%;
+      }
+      @media (max-width: 400px) {
+        display: none;
+      }
       img {
         width: 100%;
       }
@@ -29,6 +42,24 @@
       background-color: rgb(249, 249, 249);
       @include flex(flex, column, center, center);
       width: 50%;
+      @media (max-width: 500px) {
+        width: 60%;
+      }
+      @media (max-width: 400px) {
+        width: 90%;
+      }
+      .ordered {
+        border-radius: 12px;
+        background-color: rgb(78, 183, 78);
+        width: 90%;
+        padding: 12px 0;
+        text-align: center;
+        color: white;
+        @include font(20px, 700, 100%);
+        @media (max-width: 600px) {
+          @include font(14px, 400, 100%);
+        }
+      }
       .closeImage {
         width: 90%;
         @include flex(flex, row, flex-end, center);
@@ -75,6 +106,8 @@
         }
         p {
           color: red;
+          text-align: center;
+          @include font(16px, 400, 100%);
         }
         input[type="submit"] {
           cursor: pointer;

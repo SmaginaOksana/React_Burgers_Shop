@@ -73,7 +73,7 @@ function AuthPage({ auth }) {
               type="text"
               {...register("password", {
                 required: true,
-                pattern: /^[A-Za-z]+$/,
+                pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^\w\s]).{6,}/,
                 minLength: 8,
               })}
               placeholder="Пароль"
@@ -82,7 +82,10 @@ function AuthPage({ auth }) {
               <p>Поле не должно быть меньше 8 символов</p>
             )}
             {errors.password?.type === "pattern" && (
-              <p>Пароль должен состоять из латинских букв и не содержать $</p>
+              <p>
+                Пароль может состоять из латинских букв разного регистра, цифр и
+                спец.символов
+              </p>
             )}
 
             {(errors.login || errors.password) && (

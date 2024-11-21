@@ -124,8 +124,8 @@
         .signUp,
         .logIn {
           width: 90%;
-          padding: 12px 0;
           a {
+            padding: 12px 0;
             @include flex(flex, row, center, center);
             margin: auto;
             color: rgb(255, 112, 32);

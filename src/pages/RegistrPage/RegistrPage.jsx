@@ -75,9 +75,9 @@ function RegistrPage({ auth }) {
               type="text"
               {...register("phone", {
                 required: true,
-                pattern: /^\d{3}-\d{2}-\d{3}-\d{2}-\d{2}$/,
+                pattern: /^\d{3}\d{2}\d{3}\d{2}\d{2}$/,
               })}
-              placeholder="375-00-000-00-00"
+              placeholder="375000000000"
             />
             {errors.phone?.type === "pattern" && (
               <p>
@@ -108,7 +108,7 @@ function RegistrPage({ auth }) {
               type="text"
               {...register("password", {
                 required: true,
-                pattern: /^[A-Za-z]+$/,
+                pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^\w\s]).{6,}/,
                 minLength: 8,
               })}
               placeholder="Пароль"
@@ -117,7 +117,10 @@ function RegistrPage({ auth }) {
               <p>Поле не должно быть меньше 8 символов</p>
             )}
             {errors.password?.type === "pattern" && (
-              <p>Пароль должен состоять из латинских букв и не содержать $</p>
+              <p>
+                Пароль может состоять из латинских букв разного регистра, цифр и
+                спец.символов
+              </p>
             )}
             <input
               type="text"

@@ -38,7 +38,6 @@ function UserPage({ auth, userFB }) {
       .then(() => {
         updatePassword(user, getValues().newPassword)
           .then(() => {
-            console.log("success");
             updateUserPassword(credentialUserFB, userFB.key)
               .then(() => {
                 console.log("success");

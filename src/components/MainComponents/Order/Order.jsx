@@ -6,7 +6,7 @@ function Order({ setOrder, userFB }) {
   const [userPhone, setUserPhone] = useState(userFB.phone);
   const [userEmail, setUserEmail] = useState(userFB.email);
   const [inputDelivery, setInputDelivery] = useState("");
-  const [inputTakeOff, setInputTakeOff] = useState("");
+  const [errors, setErrors] = useState({ delivery: "" });
 
   const handleSubmit = () => {
     const data = {
@@ -14,10 +14,16 @@ function Order({ setOrder, userFB }) {
       phone: userPhone,
       email: userEmail,
       delivery: inputDelivery,
-      takeOff: inputTakeOff,
     };
-    setOrder(false);
-    console.log(data);
+    if (!data.delivery) {
+      setErrors({
+        ...errors,
+        delivery: "Необходимо выбрать способ получения товара!",
+      });
+    } else {
+      setErrors({ ...errors, delivery: "", ordered: "Заказ оформлен!" });
+    }
+    console.log(inputDelivery);
   };
 
   return (
@@ -37,6 +43,7 @@ function Order({ setOrder, userFB }) {
           <img src="products/order.png" alt="order" />
         </div>
         <div className="toSetOrder">
+          {errors.ordered ? <p className="ordered">{errors.ordered}</p> : ""}
           <div
             className="closeImage"
             onClick={() => {
@@ -63,7 +70,7 @@ function Order({ setOrder, userFB }) {
             />
             <input
               type="text"
-              placeholder="375-00-000-00-00"
+              placeholder="375000000000"
               defaultValue={userFB.phone}
               onChange={(event) => {
                 setUserPhone(event.target.value);
@@ -97,12 +104,13 @@ function Order({ setOrder, userFB }) {
                   name="radio"
                   value="takeOff"
                   onChange={(event) => {
-                    setInputTakeOff(event.target.value);
+                    setInputDelivery(event.target.value);
                   }}
                 />
                 Самовывоз
               </label>
             </div>
+            {!errors.delivery ? "" : <p>{errors.delivery}</p>}
             <input type="submit" value="Оформить" />
           </form>
         </div>
