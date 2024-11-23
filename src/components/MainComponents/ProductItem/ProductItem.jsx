@@ -1,7 +1,7 @@
 import "./ProductItem.scss";
 import { addItemBasket } from "../../../functions/addItemBasket";
 import MealDescription from "../MealDescription/MealDescription";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 function ProductItem({ item, upload, basketProducts, index, activeTab }) {
   const { name, weight, price, onSale } = item;

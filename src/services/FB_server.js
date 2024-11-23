@@ -58,7 +58,3 @@ export async function getUsersData() {
     );
   });
 }
-export function updateUserPassword(item, key) {
-  const dataRef = ref(database, "/users/" + key);
-  return update(dataRef, item);
-}

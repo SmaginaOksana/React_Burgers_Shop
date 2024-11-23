@@ -6,7 +6,6 @@ import {
 } from "firebase/auth";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { updateUserPassword } from "../../services/FB_server";
 
 function UserPage({ auth, userFB }) {
   const navigate = useNavigate();
@@ -24,27 +23,13 @@ function UserPage({ auth, userFB }) {
     email: getValues().email,
     password: getValues.previousPassword,
   };
-  const credentialUserFB = {
-    confirmPassword: getValues().newPassword,
-    email: getValues().email,
-    name: userFB.name,
-    password: getValues().newPassword,
-    phone: userFB.phone,
-    birth: userFB.birth,
-  };
 
   const changePassword = async () => {
     await reauthenticateWithCredential(credentialFirebase)
       .then(() => {
         updatePassword(user, getValues().newPassword)
           .then(() => {
-            updateUserPassword(credentialUserFB, userFB.key)
-              .then(() => {
-                console.log("success");
-              })
-              .catch((error) => {
-                console.log(error);
-              });
+            console.log("success");
           })
           .catch((error) => {
             console.log(error);
@@ -70,10 +55,7 @@ function UserPage({ auth, userFB }) {
       <div className="wrapperForm">
         <div className="userContainer">
           <h1 className="title">Profile</h1>
-          <h2 className="title">
-            Здравствуйте,
-            {user.displayName ? user.displayName : " Пользователь"}!
-          </h2>
+          <h2 className="title">Здравствуйте, "Пользователь"!</h2>
           <h2 className="title">Вы можете изменить пароль...</h2>
           <form
             className="userPageForm"

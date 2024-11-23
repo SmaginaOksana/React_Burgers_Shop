@@ -1,7 +1,7 @@
 import "./RegistrPage.scss";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import {
   createUserWithEmailAndPassword,
   sendEmailVerification,
@@ -23,6 +23,12 @@ function RegistrPage({ auth }) {
 
   const onSubmit = async (data) => {
     console.log(data);
+    const dataForFirebase = {
+      name: data.name,
+      email: data.email,
+      phone: data.phone,
+      birth: data.birth,
+    };
     await createUserWithEmailAndPassword(auth, data.email, data.password)
       .then(() => {
         setSuccessRegistr(true);
@@ -38,7 +44,7 @@ function RegistrPage({ auth }) {
       .finally(() => {
         reset();
       });
-    await updateUsers(data)
+    await updateUsers(dataForFirebase)
       .then(() => {
         console.log("success");
       })
@@ -75,13 +81,15 @@ function RegistrPage({ auth }) {
               type="text"
               {...register("phone", {
                 required: true,
-                pattern: /^\d{3}\d{2}\d{3}\d{2}\d{2}$/,
+                pattern:
+                  /^((8|\+3)[\- ]?)?(\(?\d{3,4}\)?[\- ]?)?[\d\- ]{5,10}$/,
               })}
-              placeholder="375000000000"
+              placeholder="+375000000000"
             />
             {errors.phone?.type === "pattern" && (
               <p>
-                Номер телефона должен состоять из цифр и не содержать знак "+"
+                Номер телефона должен состоять из цифр и не содержать пробелов и
+                дефисов
               </p>
             )}
             <input
@@ -108,18 +116,15 @@ function RegistrPage({ auth }) {
               type="text"
               {...register("password", {
                 required: true,
-                pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^\w\s]).{6,}/,
-                minLength: 8,
+                pattern: /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/,
               })}
               placeholder="Пароль"
             />
-            {errors.password?.type === "minLength" && (
-              <p>Поле не должно быть меньше 8 символов</p>
-            )}
             {errors.password?.type === "pattern" && (
               <p>
-                Пароль может состоять из латинских букв разного регистра, цифр и
-                спец.символов
+                Пароль должен содержать по меньшей мере одну цифру, одну большую
+                и одну маленькую буквы латинского алфавита и быть в длину не
+                менее 8 символов
               </p>
             )}
             <input
@@ -148,7 +153,7 @@ function RegistrPage({ auth }) {
             <input type="submit" value="Зарегистрироваться" />
           </form>
           <div className="logIn">
-            <Link to="/auth">Авторизация</Link>
+            <NavLink to="/auth">Авторизация</NavLink>
           </div>
         </div>
       </div>

@@ -1,5 +1,5 @@
 import "./AuthPage.scss";
-import { Link, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import {
   signInWithEmailAndPassword,
@@ -73,19 +73,12 @@ function AuthPage({ auth }) {
               type="text"
               {...register("password", {
                 required: true,
-                pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^\w\s]).{6,}/,
                 minLength: 8,
               })}
               placeholder="Пароль"
             />
             {errors.password?.type === "minLength" && (
               <p>Поле не должно быть меньше 8 символов</p>
-            )}
-            {errors.password?.type === "pattern" && (
-              <p>
-                Пароль может состоять из латинских букв разного регистра, цифр и
-                спец.символов
-              </p>
             )}
 
             {(errors.login || errors.password) && (
@@ -94,7 +87,7 @@ function AuthPage({ auth }) {
             <input type="submit" value="Войти" />
           </form>
           <div className="signUp">
-            <Link to="/registr">Зарегистрироваться</Link>
+            <NavLink to="/registr">Зарегистрироваться</NavLink>
           </div>
           <button
             className="forget"

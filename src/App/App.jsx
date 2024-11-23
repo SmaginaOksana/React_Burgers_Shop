@@ -23,9 +23,7 @@ function App() {
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
-      if (user) {
-        console.log(user);
-      } else {
+      if (!user) {
         if (navigate !== "/auth") {
           if (navigate !== "/registr") {
             navigate("/auth");
@@ -33,6 +31,8 @@ function App() {
           }
           return;
         }
+      } else {
+        console.log(user);
       }
     });
   }, []);
@@ -40,7 +40,7 @@ function App() {
   return (
     <>
       <div className="wrapper">
-        {hidden && <Header />}
+        {hidden && <Header auth={auth} />}
         <main>
           <Routes>
             <Route

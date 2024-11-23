@@ -2,9 +2,9 @@ import "./Header.scss";
 import logoTop from "../../assets/logoTop.png";
 import pic from "../../assets/pic.png";
 import user from "../../assets/user.png";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
-function Header() {
+function Header({ auth }) {
   return (
     <header>
       <div className="container">
@@ -12,10 +12,10 @@ function Header() {
           <div className="logo">
             <img src={logoTop} alt="logo" />
           </div>
-          <div className="user">
-            <Link to="/user">
+          <div className={auth.currentUser ? "user" : "none"}>
+            <NavLink to="/user">
               <img src={user} alt="user" />
-            </Link>
+            </NavLink>
           </div>
         </div>
         <div className="titleContainer">
