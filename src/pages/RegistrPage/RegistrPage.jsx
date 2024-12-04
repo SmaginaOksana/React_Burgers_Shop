@@ -9,7 +9,7 @@ import {
 import { updateUsers } from "../../services/FB_server";
 
 function RegistrPage({ auth }) {
-  const [successRegistr, setSuccessRegistr] = useState(false);
+  const [successRegistr, setSuccessRegistr] = useState("");
 
   const {
     register,
@@ -32,24 +32,23 @@ function RegistrPage({ auth }) {
     await createUserWithEmailAndPassword(auth, data.email, data.password)
       .then(() => {
         setSuccessRegistr(true);
-      })
-      .then(() => {
         sendEmailVerification(auth.currentUser).then(() => {
           console.log("email was sent successfully");
         });
+        updateUsers(dataForFirebase)
+          .then(() => {
+            console.log("success");
+          })
+          .catch((error) => {
+            console.log(error);
+          })
+          .finally(() => {
+            reset();
+          });
       })
       .catch((error) => {
         console.log(error);
-      })
-      .finally(() => {
-        reset();
-      });
-    await updateUsers(dataForFirebase)
-      .then(() => {
-        console.log("success");
-      })
-      .catch((error) => {
-        console.log(error);
+        setSuccessRegistr(false);
       });
   };
 
@@ -59,10 +58,13 @@ function RegistrPage({ auth }) {
     <div className="container">
       <div className="wrapperForm">
         <div className="registrContainer">
-          {successRegistr ? (
+          {successRegistr === true && (
             <p className="success">Вы зарегистрированы!</p>
-          ) : (
-            ""
+          )}
+          {successRegistr === false && (
+            <p className="not success">
+              Электронная почта уже зарегистрирована!
+            </p>
           )}
           <h2 className="title">Регистрация аккаунта</h2>
           <form

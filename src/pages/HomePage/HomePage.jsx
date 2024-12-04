@@ -33,7 +33,10 @@ function HomePage({ auth, userFB, setUserFB }) {
     Promise.allSettled([productsServer, basketServer, usersServer]).then(
       (results) => {
         if (results[0].status === "fulfilled") {
-          setProductsAll({ data: results[0].value || [], status: true });
+          setProductsAll({
+            data: results[0].value || [],
+            status: true,
+          });
         }
         if (results[1].status === "fulfilled") {
           setBasketProducts({
@@ -83,7 +86,12 @@ function HomePage({ auth, userFB, setUserFB }) {
             );
           })}
         </div>
-        <h2 className="mainTitle">{activeTab.name}</h2>
+        <div className="mainTitle">
+          <h2>{activeTab.name}</h2>
+          {productsAll.data.length === 0 && (
+            <h2 className="existing">Упссс... Товары не найдены</h2>
+          )}
+        </div>
         <div className="basketContainer">
           <Basket
             upload={upload}
